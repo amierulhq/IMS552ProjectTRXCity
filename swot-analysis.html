@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SWOT Analysis | TRX City</title>
+    
+    <!-- Bootstrap 5 CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Montserrat Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --trx-gold: #C09A53;
+            --trx-dark: #1A1A1A;
+            --trx-light: #F9F9F9;
+            --text-muted: #666666;
+            
+            /* SWOT Colors */
+            --swot-s: #10b981; /* Emerald */
+            --swot-w: #f59e0b; /* Amber */
+            --swot-o: #0ea5e9; /* Azure */
+            --swot-t: #ef4444; /* Crimson */
+        }
+
+        body { font-family: 'Montserrat', sans-serif; background-color: var(--trx-light); color: var(--trx-dark); }
+
+        /* Navigation Bar */
+        .custom-nav-wrapper { background-color: #ffffff; border-bottom: 1px solid #e0e0e0; overflow-x: auto; white-space: nowrap; position: sticky; top: 0; z-index: 1030; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        .custom-nav-wrapper::-webkit-scrollbar { height: 4px; }
+        .custom-nav-wrapper::-webkit-scrollbar-thumb { background-color: var(--trx-gold); border-radius: 4px; }
+        .custom-nav { display: flex; padding: 15px 20px; list-style: none; margin: 0; }
+        .custom-nav .nav-link { color: var(--text-muted); font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; padding: 8px 16px; border-bottom: 2px solid transparent; transition: all 0.3s ease; text-decoration: none; }
+        .custom-nav .nav-link:hover { color: var(--trx-dark); }
+        .custom-nav .nav-link.active { color: var(--trx-gold); border-bottom: 2px solid var(--trx-gold); }
+
+        .text-gold { color: var(--trx-gold); }
+        .section-title { font-weight: 700; color: var(--trx-dark); margin-bottom: 20px; position: relative; padding-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
+        .section-title::after { content: ''; position: absolute; left: 0; bottom: 0; width: 60px; height: 3px; background-color: var(--trx-gold); }
+        .text-center .section-title::after { left: 50%; transform: translateX(-50%); }
+
+        /* =========================================
+           SWOT MATRIX GRID
+           ========================================= */
+        .swot-wrapper {
+            position: relative;
+            max-width: 1000px;
+            margin: 50px auto;
+        }
+
+        .swot-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .swot-grid { grid-template-columns: 1fr; }
+        }
+
+        .swot-card {
+            padding: 40px;
+            border-radius: 16px;
+            color: #ffffff;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            min-height: 280px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            z-index: 1;
+        }
+
+        .swot-card:hover {
+            transform: scale(1.03);
+            z-index: 10;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        /* Specific Quadrant Gradients */
+        .card-s { background: linear-gradient(135deg, #059669 0%, #10b981 100%); }
+        .card-w { background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%); }
+        .card-o { background: linear-gradient(135deg, #0284c7 0%, #0ea5e9 100%); }
+        .card-t { background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%); }
+
+        /* Decorative Background Letters */
+        .bg-letter {
+            position: absolute;
+            bottom: -20px;
+            right: -10px;
+            font-size: 180px;
+            font-weight: 800;
+            line-height: 1;
+            opacity: 0.15;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .swot-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .swot-icon {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            backdrop-filter: blur(5px);
+        }
+
+        .swot-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin: 0;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .swot-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .swot-list li {
+            margin-bottom: 12px;
+            font-size: 14px;
+            line-height: 1.6;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .swot-list li i {
+            margin-top: 4px;
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        /* Center Badge */
+        .swot-center-badge {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px;
+            height: 100px;
+            background: var(--trx-dark);
+            border: 5px solid var(--trx-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: var(--trx-gold);
+            font-weight: 800;
+            font-size: 20px;
+            z-index: 5;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            letter-spacing: 2px;
+        }
+        
+        @media (max-width: 768px) {
+            .swot-center-badge { display: none; }
+        }
+
+        /* =========================================
+           ANALYSIS TEXT SECTIONS
+           ========================================= */
+        .analysis-box {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.03);
+            border-top: 4px solid var(--trx-dark);
+            height: 100%;
+        }
+
+        .analysis-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .analysis-header h4 { margin: 0; font-weight: 700; color: var(--trx-dark); }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header class="py-3 px-4 d-flex justify-content-between align-items-center border-bottom bg-white">
+        <div class="fw-bold fs-4 tracking-wider">IMS<span class="text-gold">.552</span></div>
+        <div class="text-muted small fw-semibold tracking-wide d-none d-sm-block">IMS552 Web-Slide Concept Presentation</div>
+    </header>
+
+    <!-- Navigation Menu -->
+    <div class="custom-nav-wrapper">
+        <ul class="custom-nav">
+            <li><a href="index.html" class="nav-link">Introduction</a></li>
+            <li><a href="org-background.html" class="nav-link">Organization Background</a></li>
+            <li><a href="corporate-identity.html" class="nav-link">Vision & Mission</a></li>
+            <li><a href="structure-chart.html" class="nav-link">Structure Chart</a></li>
+            <li><a href="functional-desc.html" class="nav-link">Functional Description</a></li>
+            <li><a href="roles-functions.html" class="nav-link">Roles & Functions</a></li>
+            <li><a href="data-used.html" class="nav-link">Data Used</a></li>
+            <li><a href="is-list.html" class="nav-link">List of IS</a></li>
+            <li><a href="is-types.html" class="nav-link">Types of IS</a></li>
+            <li><a href="is-details.html" class="nav-link">Details of Selected IS</a></li>
+            <li><a href="is-problems.html" class="nav-link">IS Problems</a></li>
+            <li><a href="swot-analysis.html" class="nav-link active">SWOT Analysis</a></li>
+            <li><a href="recommendations.html" class="nav-link">Recommendations</a></li>
+            <li><a href="conclusion.html" class="nav-link">Conclusion</a></li>
+        </ul>
+    </div>
+
+    <main class="container my-5 py-3">
+        
+        <div class="text-center mb-4">
+            <h6 class="text-gold fw-bold text-uppercase tracking-wide">Strategic Evaluation</h6>
+            <h1 class="fw-bold display-6 section-title mx-auto">SWOT Analysis</h1>
+            <p class="text-muted mt-3 mx-auto" style="max-width: 800px;">Assessing the internal capabilities and external environmental factors impacting the IT Asset Management System at TRX City Sdn Bhd.</p>
+        </div>
+
+        <!-- 2x2 SWOT Matrix -->
+        <div class="swot-wrapper">
+            <div class="swot-center-badge">
+                <span>SWOT</span>
+                <i class="fa-solid fa-microchip" style="font-size: 14px; opacity: 0.8; margin-top: 5px;"></i>
+            </div>
+
+            <div class="swot-grid">
+                
+                <!-- STRENGTHS -->
+                <div class="swot-card card-s">
+                    <div class="bg-letter">S</div>
+                    <div class="swot-header">
+                        <div class="swot-icon"><i class="fa-solid fa-arrow-trend-up"></i></div>
+                        <h3 class="swot-title">Strengths</h3>
+                    </div>
+                    <ul class="swot-list">
+                        <li><i class="fa-solid fa-circle-check"></i> Reduce manual workload through the use of barcodes.</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Improve audit accuracy and accountability of asset entry and exit controls.</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Facilitates warranty monitoring and hardware lifecycle planning.</li>
+                    </ul>
+                </div>
+
+                <!-- WEAKNESSES -->
+                <div class="swot-card card-w">
+                    <div class="bg-letter">W</div>
+                    <div class="swot-header">
+                        <div class="swot-icon"><i class="fa-solid fa-link-slash"></i></div>
+                        <h3 class="swot-title">Weaknesses</h3>
+                    </div>
+                    <ul class="swot-list">
+                        <li><i class="fa-solid fa-circle-xmark"></i> It depends heavily on staff discipline to update data.</li>
+                        <li><i class="fa-solid fa-circle-xmark"></i> The risk of human error affects the accuracy of records.</li>
+                        <li><i class="fa-solid fa-circle-xmark"></i> Lack of integration with other systems, affecting reporting efficiency.</li>
+                    </ul>
+                </div>
+
+                <!-- OPPORTUNITIES -->
+                <div class="swot-card card-o">
+                    <div class="bg-letter">O</div>
+                    <div class="swot-header">
+                        <div class="swot-icon"><i class="fa-solid fa-lightbulb"></i></div>
+                        <h3 class="swot-title">Opportunities</h3>
+                    </div>
+                    <ul class="swot-list">
+                        <li><i class="fa-solid fa-rocket"></i> Increase asset visibility for future hardware replacement budget forecasting.</li>
+                        <li><i class="fa-solid fa-rocket"></i> Strengthen company technology audit compliance levels to reduce losses.</li>
+                        <li><i class="fa-solid fa-rocket"></i> Maximize warranty monitoring to avoid unexpected maintenance costs.</li>
+                    </ul>
+                </div>
+
+                <!-- THREATS -->
+                <div class="swot-card card-t">
+                    <div class="bg-letter">T</div>
+                    <div class="swot-header">
+                        <div class="swot-icon"><i class="fa-solid fa-shield-virus"></i></div>
+                        <h3 class="swot-title">Threats</h3>
+                    </div>
+                    <ul class="swot-list">
+                        <li><i class="fa-solid fa-triangle-exclamation"></i> Risk of cyber attacks or data breaches on asset central databases.</li>
+                        <li><i class="fa-solid fa-triangle-exclamation"></i> The rapid evolution of technology that can quickly render existing systems obsolete.</li>
+                        <li><i class="fa-solid fa-triangle-exclamation"></i> Discontinuation of security update support by external software vendors.</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Bootstrap 5 Bundle JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

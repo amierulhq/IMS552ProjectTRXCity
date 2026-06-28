@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommendations | TRX City</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --trx-gold: #C09A53;
+            --trx-dark: #1A1A1A;
+            --trx-light: #F9F9F9;
+            --text-muted: #666666;
+            --success-green: #10b981;
+            --danger-red: #ef4444;
+        }
+
+        body { font-family: 'Montserrat', sans-serif; background-color: var(--trx-light); color: var(--trx-dark); }
+
+        /* Navigation Bar */
+        .custom-nav-wrapper { background-color: #ffffff; border-bottom: 1px solid #e0e0e0; overflow-x: auto; white-space: nowrap; position: sticky; top: 0; z-index: 1030; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        .custom-nav-wrapper::-webkit-scrollbar { height: 4px; }
+        .custom-nav-wrapper::-webkit-scrollbar-thumb { background-color: var(--trx-gold); border-radius: 4px; }
+        .custom-nav { display: flex; padding: 15px 20px; list-style: none; margin: 0; }
+        .custom-nav .nav-link { color: var(--text-muted); font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; padding: 8px 16px; border-bottom: 2px solid transparent; transition: all 0.3s ease; text-decoration: none; }
+        .custom-nav .nav-link:hover { color: var(--trx-dark); }
+        .custom-nav .nav-link.active { color: var(--trx-gold); border-bottom: 2px solid var(--trx-gold); }
+
+        .text-gold { color: var(--trx-gold); }
+        .section-title { font-weight: 700; color: var(--trx-dark); margin-bottom: 20px; position: relative; padding-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
+        .section-title::after { content: ''; position: absolute; left: 0; bottom: 0; width: 60px; height: 3px; background-color: var(--trx-gold); }
+        .text-center .section-title::after { left: 50%; transform: translateX(-50%); }
+
+        /* =========================================
+           PHASE 1: EVALUATION MATRIX
+           ========================================= */
+        .alt-card {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+            height: 100%;
+            position: relative;
+            transition: transform 0.3s ease;
+            border-top: 5px solid var(--trx-dark);
+        }
+
+        .alt-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+        }
+
+        .alt-card.recommended-outline {
+            border-top-color: var(--trx-gold);
+            border-left: 2px solid var(--trx-gold);
+            border-right: 2px solid var(--trx-gold);
+            border-bottom: 2px solid var(--trx-gold);
+        }
+
+        .alt-badge {
+            position: absolute;
+            top: -15px;
+            right: 30px;
+            background: var(--trx-gold);
+            color: #fff;
+            padding: 5px 15px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            box-shadow: 0 4px 10px rgba(192, 154, 83, 0.3);
+        }
+
+        .pro-con-list { list-style: none; padding: 0; margin: 0; }
+        .pro-con-list li { margin-bottom: 15px; font-size: 14px; line-height: 1.6; display: flex; align-items: flex-start; gap: 12px; color: var(--text-muted); }
+        .pro-con-list li i { margin-top: 3px; font-size: 14px; }
+        .pro-icon { color: var(--success-green); }
+        .con-icon { color: var(--danger-red); }
+
+        .alt-icon-header {
+            width: 60px; height: 60px;
+            background: rgba(192, 154, 83, 0.1);
+            color: var(--trx-gold);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        /* =========================================
+           PHASE 2: EXECUTIVE DECISION BANNER
+           ========================================= */
+        .decision-banner {
+            background: linear-gradient(135deg, var(--trx-dark) 0%, #2a2a2a 100%);
+            border-radius: 12px;
+            padding: 50px;
+            color: #ffffff;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            margin: 60px 0;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .decision-banner::before {
+            content: '\f135'; /* Rocket icon */
+            font-family: 'FontAwesome';
+            position: absolute;
+            right: -20px;
+            bottom: -30px;
+            font-size: 150px;
+            color: rgba(255,255,255,0.03);
+            transform: rotate(-15deg);
+        }
+
+        /* =========================================
+           PHASE 3: PILLARS OF IMPACT
+           ========================================= */
+        .impact-card {
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 30px;
+            height: 100%;
+            border-left: 4px solid var(--trx-gold);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            transition: all 0.3s ease;
+        }
+
+        .impact-card:hover {
+            background: var(--trx-dark);
+            color: #ffffff;
+            border-left-color: var(--trx-light);
+            transform: translateY(-5px);
+        }
+
+        .impact-card:hover .impact-title, .impact-card:hover .impact-desc {
+            color: #ffffff !important;
+        }
+
+        .impact-card:hover .impact-icon {
+            color: var(--trx-gold);
+            background: rgba(255,255,255,0.1);
+        }
+
+        .impact-icon {
+            width: 50px; height: 50px;
+            background: rgba(192, 154, 83, 0.1);
+            color: var(--trx-gold);
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 20px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .impact-title { font-weight: 700; font-size: 18px; margin-bottom: 15px; color: var(--trx-dark); transition: color 0.3s ease; }
+        .impact-desc { font-size: 14px; line-height: 1.7; color: var(--text-muted); transition: color 0.3s ease; margin: 0; }
+
+    </style>
+</head>
+<body>
+
+    <header class="py-3 px-4 d-flex justify-content-between align-items-center border-bottom bg-white">
+        <div class="fw-bold fs-4 tracking-wider">IMS<span class="text-gold">.552</span></div>
+        <div class="text-muted small fw-semibold tracking-wide d-none d-sm-block">IMS552 Web-Slide Concept Presentation</div>
+    </header>
+
+    <div class="custom-nav-wrapper">
+        <ul class="custom-nav">
+            <li><a href="index.html" class="nav-link">Introduction</a></li>
+            <li><a href="org-background.html" class="nav-link">Organization Background</a></li>
+            <li><a href="corporate-identity.html" class="nav-link">Vision & Mission</a></li>
+            <li><a href="structure-chart.html" class="nav-link">Structure Chart</a></li>
+            <li><a href="functional-desc.html" class="nav-link">Functional Description</a></li>
+            <li><a href="roles-functions.html" class="nav-link">Roles & Functions</a></li>
+            <li><a href="data-used.html" class="nav-link">Data Used</a></li>
+            <li><a href="is-list.html" class="nav-link">List of IS</a></li>
+            <li><a href="is-types.html" class="nav-link">Types of IS</a></li>
+            <li><a href="is-details.html" class="nav-link">Details of Selected IS</a></li>
+            <li><a href="is-problems.html" class="nav-link">IS Problems</a></li>
+            <li><a href="swot-analysis.html" class="nav-link">SWOT Analysis</a></li>
+            <li><a href="recommendations.html" class="nav-link active">Recommendations</a></li>
+            <li><a href="conclusion.html" class="nav-link">Conclusion</a></li>
+        </ul>
+    </div>
+
+    <main class="container my-5 py-3">
+        
+        <div class="text-center mb-5">
+            <h6 class="text-gold fw-bold text-uppercase tracking-wide">Strategic Solutions</h6>
+            <h1 class="fw-bold display-6 section-title mx-auto">Generate & Evaluate Alternatives</h1>
+            <p class="text-muted mt-3 mx-auto" style="max-width: 800px;">Based on the detailed analysis of the weaknesses and challenges faced by the IT Asset Management System, two solution options were formulated to overcome the issues of data isolation and reliance on manual processes.</p>
+        </div>
+
+        <div class="row g-5 justify-content-center">
+            
+            <div class="col-lg-6">
+                <div class="alt-card recommended-outline">
+                    <div class="alt-badge">Chosen Strategy</div>
+                    <div class="alt-icon-header"><i class="fa-solid fa-network-wired"></i></div>
+                    <h3 class="fw-bold mb-3">Alternative 1: API System Integration</h3>
+                    <p class="text-muted small mb-4">Implement automatic system integration using API (Application Programming Interface) programming between the IT Asset Management System and key corporate systems such as the Employee Management System (ESS) and the Financial System (IFCA).</p>
+                    
+                    <div class="row g-4">
+                        <div class="col-sm-6">
+                            <h6 class="fw-bold text-dark"><i class="fa-solid fa-thumbs-up me-2 text-success"></i> Advantages</h6>
+                            <ul class="pro-con-list">
+                                <li><i class="fa-solid fa-check pro-icon"></i> Eliminates data silos completely with real-time database synchronization.</li>
+                                <li><i class="fa-solid fa-check pro-icon"></i> Eliminates the need for manual data entry by IT staff.</li>
+                                <li><i class="fa-solid fa-check pro-icon"></i> Drastically reduces the risk of human error, ensuring accurate ownership records.</li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-6">
+                            <h6 class="fw-bold text-dark"><i class="fa-solid fa-thumbs-down me-2 text-danger"></i> Disadvantages</h6>
+                            <ul class="pro-con-list">
+                                <li><i class="fa-solid fa-xmark con-icon"></i> Requires a relatively high initial investment cost to appoint a software vendor.</li>
+                                <li><i class="fa-solid fa-xmark con-icon"></i> Needs a longer testing phase period to ensure safe interdepartmental data transfers.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="alt-card">
+                    <div class="alt-icon-header"><i class="fa-solid fa-mobile-screen-button"></i></div>
+                    <h3 class="fw-bold mb-3">Alternative 2: Smart Barcode Mobile App</h3>
+                    <p class="text-muted small mb-4">Upgrade the existing physical scanning infrastructure to use smart barcodes linked to a special mobile application. IT staff can use their smartphones to update asset locations directly to the cloud database instead of static scanning machines.</p>
+                    
+                    <div class="row g-4">
+                        <div class="col-sm-6">
+                            <h6 class="fw-bold text-dark"><i class="fa-solid fa-thumbs-up me-2 text-success"></i> Advantages</h6>
+                            <ul class="pro-con-list">
+                                <li><i class="fa-solid fa-check pro-icon"></i> Much lower implementation cost compared to API integration.</li>
+                                <li><i class="fa-solid fa-check pro-icon"></i> Easy to develop and deploy in a very short time framework.</li>
+                                <li><i class="fa-solid fa-check pro-icon"></i> Does not involve major changes to the main system code structure.</li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-6">
+                            <h6 class="fw-bold text-dark"><i class="fa-solid fa-thumbs-down me-2 text-danger"></i> Disadvantages</h6>
+                            <ul class="pro-con-list">
+                                <li><i class="fa-solid fa-xmark con-icon"></i> Does not solve the basic problem of data isolation with other departments.</li>
+                                <li><i class="fa-solid fa-xmark con-icon"></i> Still requires manual communication with the HR Department.</li>
+                                <li><i class="fa-solid fa-xmark con-icon"></i> Relies entirely on the discipline of staff to perform scans during asset movement.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="decision-banner">
+            <h6 class="text-gold fw-bold text-uppercase tracking-wider mb-3">Final Decision</h6>
+            <h2 class="display-6 fw-bold mb-4">Implementation of Alternative 1:<br>API System Integration</h2>
+            <p class="lead mb-0 mx-auto" style="max-width: 800px; font-size: 16px;">
+                Based on an in-depth evaluation, we recommend that TRX City Sdn Bhd choose the first alternative. This option is seen as the most effective long-term solution because it directly solves the root cause of the data isolation (data silo) problem faced by the IT Department today. By integrating the IT Asset Management System with the main corporate system, the IT Department no longer needs to rely on manual communication.
+            </p>
+        </div>
+
+        <div class="text-center mb-5">
+            <h3 class="fw-bold text-dark">The Three Pillars of Impact</h3>
+            <p class="text-muted">Why API Integration is critical for supporting TRX City Sdn Bhd's status as a major developer.</p>
+        </div>
+
+        <div class="row g-4 justify-content-center mb-5 pb-5">
+            
+            <div class="col-lg-4 col-md-6">
+                <div class="impact-card">
+                    <div class="impact-icon"><i class="fa-solid fa-gears"></i></div>
+                    <h4 class="impact-title">Operational Efficiency</h4>
+                    <p class="impact-desc">Every piece of information regarding the entry of new employees or employees who have resigned will be automatically updated into the asset management database. This eliminates human negligence issues such as delays in recording the status of the company's laptop logins.</p>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="impact-card">
+                    <div class="impact-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                    <h4 class="impact-title">Security & Risk Management</h4>
+                    <p class="impact-desc">When connected to the HR system in real time, digital access rights for critical assets (like servers and network devices) can be revoked immediately upon an employee's termination. This drastically reduces the risk of internal data breaches caused by dormant accounts.</p>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="impact-card">
+                    <div class="impact-icon"><i class="fa-solid fa-chart-line"></i></div>
+                    <h4 class="impact-title">Financial ROI</h4>
+                    <p class="impact-desc">Although requiring a larger initial financial investment, the long-term ROI is highly worthwhile. Automatic coordination with the Financial System (IFCA) allows asset depreciation calculations, hardware insurance claims, and software license renewals to be done automatically without calculation errors.</p>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

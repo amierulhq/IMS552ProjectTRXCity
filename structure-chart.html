@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Structure Chart | TRX City</title>
+    
+    <!-- Bootstrap 5 CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Montserrat Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --trx-gold: #C09A53;
+            --trx-dark: #1A1A1A;
+            --trx-light: #F9F9F9;
+            --text-muted: #666666;
+            
+            /* Specific colors based on TRX screenshot */
+            --bg-deep: #1E1D24; 
+            --card-brown: #38312C;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--trx-light);
+            color: var(--trx-dark);
+        }
+
+        /* Header Branding */
+        header {
+            background-color: #ffffff;
+        }
+
+        /* Mobile-Friendly Scrollable Menu bar */
+        .custom-nav-wrapper {
+            background-color: #ffffff;
+            border-bottom: 1px solid #e0e0e0;
+            overflow-x: auto;
+            white-space: nowrap;
+            position: sticky;
+            top: 0;
+            z-index: 1030;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .custom-nav-wrapper::-webkit-scrollbar {
+            height: 4px;
+        }
+        .custom-nav-wrapper::-webkit-scrollbar-thumb {
+            background-color: var(--trx-gold);
+            border-radius: 4px;
+        }
+        .custom-nav {
+            display: flex;
+            padding: 15px 20px;
+            list-style: none;
+            margin: 0;
+        }
+        .custom-nav .nav-link {
+            color: var(--text-muted);
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 8px 16px;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        .custom-nav .nav-link:hover {
+            color: var(--trx-dark);
+        }
+        .custom-nav .nav-link.active {
+            color: var(--trx-gold);
+            border-bottom: 2px solid var(--trx-gold);
+        }
+
+        /* Utilities */
+        .text-gold { color: var(--trx-gold); }
+
+        /* Structure Section Styling (Matches Screenshot) */
+        .structure-section {
+            background-color: var(--bg-deep);
+            padding: 80px 0;
+            min-height: 100vh;
+        }
+
+        .structure-heading {
+            color: var(--trx-gold);
+            font-weight: 600;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 28px;
+        }
+
+        /* Organization Cards */
+        .org-card {
+            background-color: var(--card-brown);
+            padding: 35px 30px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            border-radius: 2px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .org-card:hover {
+            background-color: #423b36;
+        }
+
+        .org-name {
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+
+        .org-title {
+            color: var(--trx-gold);
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .org-divider {
+            height: 1px;
+            background-color: rgba(255, 255, 255, 0.6);
+            width: 100%;
+            margin-top: auto; /* Always pushes the line to the bottom */
+        }
+
+        .section-separator {
+            border-color: rgba(255, 255, 255, 0.2);
+            margin: 80px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header class="py-3 px-4 d-flex justify-content-between align-items-center border-bottom">
+        <div class="fw-bold fs-4 tracking-wider">IMS<span class="text-gold">.552</span></div>
+        <div class="text-muted small fw-semibold tracking-wide d-none d-sm-block">IMS552 Web-Slide Concept Presentation</div>
+    </header>
+
+    <!-- Navigation Menu -->
+    <div class="custom-nav-wrapper">
+        <ul class="custom-nav">
+            <li><a href="index.html" class="nav-link">Introduction</a></li>
+            <li><a href="org-background.html" class="nav-link">Organization Background</a></li>
+            <li><a href="corporate-identity.html" class="nav-link">Vision & Mission</a></li>
+            <li><a href="structure-chart.html" class="nav-link active">Structure Chart</a></li>
+            <li><a href="functional-desc.html" class="nav-link">Functional Description</a></li>
+            <li><a href="roles-functions.html" class="nav-link">Roles & Functions</a></li>
+            <li><a href="data-used.html" class="nav-link">Data Used</a></li>
+            <li><a href="is-list.html" class="nav-link">List of IS</a></li>
+            <li><a href="is-types.html" class="nav-link">Types of IS</a></li>
+            <li><a href="is-details.html" class="nav-link">Details of Selected IS</a></li>
+            <li><a href="is-problems.html" class="nav-link">IS Problems</a></li>
+            <li><a href="swot-analysis.html" class="nav-link">SWOT Analysis</a></li>
+            <li><a href="recommendations.html" class="nav-link">Recommendations</a></li>
+            <li><a href="conclusion.html" class="nav-link">Conclusion</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Structure Section -->
+    <section class="structure-section">
+        <div class="container px-4">
+            
+            <!-- BOARD OF DIRECTORS -->
+            <h2 class="structure-heading">Board of Directors</h2>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 justify-content-center">
+                
+                <div class="col">
+                    <div class="org-card">
+                        <div class="org-name">Mohd Hisyamuddin bin Awang Abu Bakar</div>
+                        <div class="org-divider"></div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="org-card">
+                        <div class="org-name">YBhg. Dato’ Ir. Hashimah binti Hashim</div>
+                        <div class="org-divider"></div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="org-card">
+                        <div class="org-name">Puan Suhara binti Abdul Rahman</div>
+                        <div class="org-divider"></div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="org-card">
+                        <div class="org-name">Eugene Khoo Kong Hooi</div>
+                        <div class="org-divider"></div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="org-card">
+                        <div class="org-name">Datuk Hanipah binti Farikullah</div>
+                        <div class="org-divider"></div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Separator Line -->
+            <hr class="section-separator">
+
+            <!-- SENIOR MANAGEMENT -->
+            <h2 class="structure-heading">Senior Management</h2>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                
+                <div class="col">
+                    <div class="org-card">
+                        <div class="org-name">Dato’ Sr Haji Azmar Talib</div>
+                        <div class="org-title">Chief Executive Officer</div>
+                        <div class="org-divider"></div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="org-card">
+                        <div class="org-name">Tajuddin Shahruddin</div>
+                        <div class="org-title">Chief Financial Officer</div>
+                        <div class="org-divider"></div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="org-card">
+                        <div class="org-name">Mohd Fahmi Zakaria</div>
+                        <div class="org-title">Chief Operating Officer</div>
+                        <div class="org-divider"></div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="org-card">
+                        <div class="org-name">Yusmurni Md Yusoff</div>
+                        <div class="org-title">Chief Strategy Officer</div>
+                        <div class="org-divider"></div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="org-card">
+                        <div class="org-name">Catherine Ching</div>
+                        <div class="org-title">Director, Procurement and Contract Management</div>
+                        <div class="org-divider"></div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="org-card">
+                        <div class="org-name">Cindy Liu</div>
+                        <div class="org-title">Director, Financial Controller</div>
+                        <div class="org-divider"></div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="org-card">
+                        <div class="org-name">Farah Othman</div>
+                        <div class="org-title">Director, Human Resources & Administration</div>
+                        <div class="org-divider"></div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="org-card">
+                        <div class="org-name">Maisara Ismail</div>
+                        <div class="org-title">Director, Marketing & Communications</div>
+                        <div class="org-divider"></div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="org-card">
+                        <div class="org-name">Nita Azura Ishak</div>
+                        <div class="org-title">Head, District Management</div>
+                        <div class="org-divider"></div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="org-card">
+                        <div class="org-name">Nor Shaharom Mansor</div>
+                        <div class="org-title">Director, Master Development</div>
+                        <div class="org-divider"></div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="org-card">
+                        <div class="org-name">Prema Sivasoathy</div>
+                        <div class="org-title">Director, Legal</div>
+                        <div class="org-divider"></div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="org-card">
+                        <div class="org-name">Raja Iylia Diyana</div>
+                        <div class="org-title">Director, Corporate Planning</div>
+                        <div class="org-divider"></div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="org-card">
+                        <div class="org-name">Raiyan Loo</div>
+                        <div class="org-title">Director, Plot Development</div>
+                        <div class="org-divider"></div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="org-card">
+                        <div class="org-name">Robeatul Redzwan</div>
+                        <div class="org-title">Director, Risk, Integrity & Compliance</div>
+                        <div class="org-divider"></div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="org-card">
+                        <div class="org-name">Shazil Hifni Dahalan</div>
+                        <div class="org-title">Director, Investments</div>
+                        <div class="org-divider"></div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Bootstrap 5 Bundle JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

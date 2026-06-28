@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List of IS | TRX City</title>
+    
+    <!-- Bootstrap 5 CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Montserrat Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --trx-gold: #C09A53;
+            --trx-dark: #1A1A1A;
+            --trx-light: #F9F9F9;
+            --text-muted: #666666;
+            --bg-alt: #f1f3f5;
+        }
+
+        body { font-family: 'Montserrat', sans-serif; background-color: #ffffff; color: var(--trx-dark); margin: 0; padding: 0; }
+
+        /* Navigation Bar */
+        .custom-nav-wrapper { background-color: #ffffff; border-bottom: 1px solid #e0e0e0; overflow-x: auto; white-space: nowrap; position: sticky; top: 0; z-index: 1030; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        .custom-nav-wrapper::-webkit-scrollbar { height: 4px; }
+        .custom-nav-wrapper::-webkit-scrollbar-thumb { background-color: var(--trx-gold); border-radius: 4px; }
+        .custom-nav { display: flex; padding: 15px 20px; list-style: none; margin: 0; }
+        .custom-nav .nav-link { color: var(--text-muted); font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; padding: 8px 16px; border-bottom: 2px solid transparent; transition: all 0.3s ease; text-decoration: none; }
+        .custom-nav .nav-link:hover { color: var(--trx-dark); }
+        .custom-nav .nav-link.active { color: var(--trx-gold); border-bottom: 2px solid var(--trx-gold); }
+
+        .text-gold { color: var(--trx-gold); }
+
+        /* System Showcase Sections */
+        .system-section {
+            padding: 80px 0;
+            border-bottom: 1px solid #eaeaea;
+        }
+        
+        /* Alternating Background Colors for clear separation */
+        .system-section:nth-child(even) {
+            background-color: var(--bg-alt);
+        }
+
+        .system-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .system-number {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--trx-gold);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .system-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--trx-dark);
+            margin-bottom: 15px;
+        }
+
+        /* Wide Image Container */
+        .system-image-wrapper {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            border: 1px solid #e0e0e0;
+        }
+
+        /* Browser Mockup Top Bar */
+        .browser-bar {
+            background: #f1f1f1;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .browser-dots {
+            display: flex;
+            gap: 6px;
+        }
+        .browser-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        .dot-red { background-color: #ff5f56; }
+        .dot-yellow { background-color: #ffbd2e; }
+        .dot-green { background-color: #27c93f; }
+
+        .system-image-wrapper img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* NEW: Explanation Details Area Template */
+        .system-details-box {
+            max-width: 1000px;
+            margin: 40px auto 0;
+            text-align: left;
+        }
+
+        .detail-block-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--trx-dark);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .detail-card {
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 8px;
+            height: 100%;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            border-left: 4px solid transparent;
+        }
+
+        .detail-card.functions-card { border-left-color: var(--trx-gold); }
+        .detail-card.objectives-card { border-left-color: var(--trx-dark); }
+
+        .detail-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .detail-list li {
+            margin-bottom: 12px;
+            font-size: 14.5px;
+            color: var(--text-muted);
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            line-height: 1.6;
+        }
+
+        .detail-list li i { margin-top: 4px; font-size: 12px; }
+        .func-icon { color: var(--trx-gold); }
+        .obj-icon { color: var(--trx-dark); }
+
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header class="py-3 px-4 d-flex justify-content-between align-items-center border-bottom bg-white">
+        <div class="fw-bold fs-4 tracking-wider">IMS<span class="text-gold">.552</span></div>
+        <div class="text-muted small fw-semibold tracking-wide d-none d-sm-block">IMS552 Web-Slide Concept Presentation</div>
+    </header>
+
+    <!-- Navigation Menu -->
+    <div class="custom-nav-wrapper">
+        <ul class="custom-nav">
+            <li><a href="index.html" class="nav-link">Introduction</a></li>
+            <li><a href="org-background.html" class="nav-link">Organization Background</a></li>
+            <li><a href="corporate-identity.html" class="nav-link">Vision & Mission</a></li>
+            <li><a href="structure-chart.html" class="nav-link">Structure Chart</a></li>
+            <li><a href="functional-desc.html" class="nav-link">Functional Description</a></li>
+            <li><a href="roles-functions.html" class="nav-link">Roles & Functions</a></li>
+            <li><a href="data-used.html" class="nav-link">Data Used</a></li>
+            <li><a href="is-list.html" class="nav-link active">List of IS</a></li>
+            <li><a href="is-types.html" class="nav-link">Types of IS</a></li>
+            <li><a href="is-details.html" class="nav-link">Details of Selected IS</a></li>
+            <li><a href="is-problems.html" class="nav-link">IS Problems</a></li>
+            <li><a href="swot-analysis.html" class="nav-link">SWOT Analysis</a></li>
+            <li><a href="recommendations.html" class="nav-link">Recommendations</a></li>
+            <li><a href="conclusion.html" class="nav-link">Conclusion</a></li>
+        </ul>
+    </div>
+
+    <!-- Page Introduction -->
+    <div class="container mt-5 pt-4 mb-4 text-center">
+        <h6 class="text-gold fw-bold text-uppercase tracking-wide">Technology Stack</h6>
+        <h1 class="fw-bold display-6">List of Information Systems</h1>
+        <p class="text-muted mt-3" style="max-width: 700px; margin: 0 auto;">An overview of the core software infrastructures and digital applications identified during our interview session at TRX City Sdn Bhd.</p>
+    </div>
+
+    <!-- System 1: IT Asset Management System -->
+    <section class="system-section">
+        <div class="container">
+            <div class="system-header">
+                <span class="system-number">System 01</span>
+                <h2 class="system-title">IT Asset Management System</h2>
+            </div>
+            
+            <div class="system-image-wrapper">
+                <div class="browser-bar">
+                    <div class="browser-dots">
+                        <div class="browser-dot dot-red"></div>
+                        <div class="browser-dot dot-yellow"></div>
+                        <div class="browser-dot dot-green"></div>
+                    </div>
+                </div>
+                <img src="SYSTEM1.png" alt="IT Asset Management System Interface">
+            </div>
+
+            <!-- Explanation Details Template -->
+            <div class="system-details-box">
+                <div class="row g-4">
+                    <!-- 1. Short Brief -->
+                    <div class="col-12 text-center mb-2">
+                        <p class="text-muted" style="max-width: 800px; margin: 0 auto; line-height: 1.8;">
+                            <strong>Overview:</strong> Tracks and manages all physical IT assets (laptops, servers, network gear, rented data‑center resources) using unique barcodes and daily updates.
+                        </p>
+                    </div>
+                    
+                    <!-- 2. Functions -->
+                    <div class="col-md-6">
+                        <div class="detail-card functions-card border">
+                            <h4 class="detail-block-title"><i class="fa-solid fa-cogs text-gold"></i> Core Functions</h4>
+                            <ul class="detail-list">
+                                <li><i class="fa-solid fa-check func-icon"></i> Barcode-based lifecycle tracking (register, scan, update).</li>
+                                <li><i class="fa-solid fa-check func-icon"></i> Check-in/check-out tracing to locate assets and users.</li>
+                                <li><i class="fa-solid fa-check func-icon"></i> Exportable reports for inventory, audits, and utilization.</li>
+                                <li><i class="fa-solid fa-check func-icon"></i> Warranty tracking to avoid coverage lapses.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 3. Objectives -->
+                    <div class="col-md-6">
+                        <div class="detail-card objectives-card border">
+                            <h4 class="detail-block-title"><i class="fa-solid fa-bullseye text-dark"></i> System Objectives</h4>
+                            <ul class="detail-list">
+                                <li><i class="fa-solid fa-arrow-right obj-icon"></i> Keep accurate, up‑to‑date IT inventory.</li>
+                                <li><i class="fa-solid fa-arrow-right obj-icon"></i> Simplify and speed audits.</li>
+                                <li><i class="fa-solid fa-arrow-right obj-icon"></i> Prevent asset loss via traceability.</li>
+                                <li><i class="fa-solid fa-arrow-right obj-icon"></i> Ensure warranty compliance and cost control.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- System 2: IFCA Application -->
+    <section class="system-section">
+        <div class="container">
+            <div class="system-header">
+                <span class="system-number">System 02</span>
+                <h2 class="system-title">IFCA Application</h2>
+            </div>
+            
+            <div class="system-image-wrapper">
+                <div class="browser-bar">
+                    <div class="browser-dots">
+                        <div class="browser-dot dot-red"></div>
+                        <div class="browser-dot dot-yellow"></div>
+                        <div class="browser-dot dot-green"></div>
+                    </div>
+                </div>
+                <img src="SYSTEM2.png" alt="IFCA Application Interface">
+            </div>
+
+            <!-- Explanation Details Template -->
+            <div class="system-details-box">
+                <div class="row g-4">
+                    <!-- 1. Short Brief -->
+                    <div class="col-12 text-center mb-2">
+                        <p class="text-muted" style="max-width: 800px; margin: 0 auto; line-height: 1.8;">
+                            <strong>Overview:</strong> Core financial system for TRX City—processes payments, invoices, P&C data, and supports error recovery for reliable finance operations.
+                        </p>
+                    </div>
+                    
+                    <!-- 2. Functions -->
+                    <div class="col-md-6">
+                        <div class="detail-card functions-card border">
+                            <h4 class="detail-block-title"><i class="fa-solid fa-cogs text-gold"></i> Core Functions</h4>
+                            <ul class="detail-list">
+                                <li><i class="fa-solid fa-check func-icon"></i> Process accounts payable, receivable, general ledger entries.</li>
+                                <li><i class="fa-solid fa-check func-icon"></i> Manage Property & Casualty financial data.</li>
+                                <li><i class="fa-solid fa-check func-icon"></i> Data-recovery/error-revert capability for incorrect entries.</li>
+                                <li><i class="fa-solid fa-check func-icon"></i> Generate financial reports for day‑to‑day operations.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 3. Objectives -->
+                    <div class="col-md-6">
+                        <div class="detail-card objectives-card border">
+                            <h4 class="detail-block-title"><i class="fa-solid fa-bullseye text-dark"></i> System Objectives</h4>
+                            <ul class="detail-list">
+                                <li><i class="fa-solid fa-arrow-right obj-icon"></i> Centralize and simplify financial processing.</li>
+                                <li><i class="fa-solid fa-arrow-right obj-icon"></i> Maintain accurate financial records.</li>
+                                <li><i class="fa-solid fa-arrow-right obj-icon"></i> Enable error recovery to protect data integrity.</li>
+                                <li><i class="fa-solid fa-arrow-right obj-icon"></i> Keep financial workflows organized and efficient.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- System 3: Facilities Management System (FMS) -->
+    <section class="system-section">
+        <div class="container">
+            <div class="system-header">
+                <span class="system-number">System 03</span>
+                <h2 class="system-title">Facilities Management System (FMS)</h2>
+            </div>
+            
+            <div class="system-image-wrapper">
+                <div class="browser-bar">
+                    <div class="browser-dots">
+                        <div class="browser-dot dot-red"></div>
+                        <div class="browser-dot dot-yellow"></div>
+                        <div class="browser-dot dot-green"></div>
+                    </div>
+                </div>
+                <img src="SYSTEM3.png" alt="Facilities Management System Interface">
+            </div>
+
+            <!-- Explanation Details Template -->
+            <div class="system-details-box">
+                <div class="row g-4">
+                    <!-- 1. Short Brief -->
+                    <div class="col-12 text-center mb-2">
+                        <p class="text-muted" style="max-width: 800px; margin: 0 auto; line-height: 1.8;">
+                            <strong>Overview:</strong> Manages maintenance tasks and schedules across TRX facilities to ensure continuous, efficient facility operations.
+                        </p>
+                    </div>
+                    
+                    <!-- 2. Functions -->
+                    <div class="col-md-6">
+                        <div class="detail-card functions-card border">
+                            <h4 class="detail-block-title"><i class="fa-solid fa-cogs text-gold"></i> Core Functions</h4>
+                            <ul class="detail-list">
+                                <li><i class="fa-solid fa-check func-icon"></i> Create and track maintenance work orders from request to completion.</li>
+                                <li><i class="fa-solid fa-check func-icon"></i> Schedule preventive maintenance across facilities.</li>
+                                <li><i class="fa-solid fa-check func-icon"></i> Provide visibility of pending/completed tasks and maintenance history.</li>
+                                <li><i class="fa-solid fa-check func-icon"></i> Produce reports on costs, equipment performance, and recurring issues.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 3. Objectives -->
+                    <div class="col-md-6">
+                        <div class="detail-card objectives-card border">
+                            <h4 class="detail-block-title"><i class="fa-solid fa-bullseye text-dark"></i> System Objectives</h4>
+                            <ul class="detail-list">
+                                <li><i class="fa-solid fa-arrow-right obj-icon"></i> Ensure uninterrupted facility operations.</li>
+                                <li><i class="fa-solid fa-arrow-right obj-icon"></i> Prevent equipment failures via proactive maintenance.</li>
+                                <li><i class="fa-solid fa-arrow-right obj-icon"></i> Improve long‑term planning and budgeting.</li>
+                                <li><i class="fa-solid fa-arrow-right obj-icon"></i> Centralize facility activity records for managers.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- System 4: Employee Self-System (ESS) -->
+    <section class="system-section">
+        <div class="container">
+            <div class="system-header">
+                <span class="system-number">System 04</span>
+                <h2 class="system-title">Employee Self-System (ESS)</h2>
+            </div>
+            
+            <div class="system-image-wrapper">
+                <div class="browser-bar">
+                    <div class="browser-dots">
+                        <div class="browser-dot dot-red"></div>
+                        <div class="browser-dot dot-yellow"></div>
+                        <div class="browser-dot dot-green"></div>
+                    </div>
+                </div>
+                <img src="SYSTEM4.png" alt="Employee Self-System Interface">
+            </div>
+
+            <!-- Explanation Details Template -->
+            <div class="system-details-box">
+                <div class="row g-4">
+                    <!-- 1. Short Brief -->
+                    <div class="col-12 text-center mb-2">
+                        <p class="text-muted" style="max-width: 800px; margin: 0 auto; line-height: 1.8;">
+                            <strong>Overview:</strong> HR system for digital submission and approval of employee claims and holiday requests, replacing paper workflows.
+                        </p>
+                    </div>
+                    
+                    <!-- 2. Functions -->
+                    <div class="col-md-6">
+                        <div class="detail-card functions-card border">
+                            <h4 class="detail-block-title"><i class="fa-solid fa-cogs text-gold"></i> Core Functions</h4>
+                            <ul class="detail-list">
+                                <li><i class="fa-solid fa-check func-icon"></i> Submit and track claims/leave electronically.</li>
+                                <li><i class="fa-solid fa-check func-icon"></i> Automated approval workflows for managers.</li>
+                                <li><i class="fa-solid fa-check func-icon"></i> Maintain accurate leave balances and claim histories.</li>
+                                <li><i class="fa-solid fa-check func-icon"></i> Provide employee visibility of claim status.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 3. Objectives -->
+                    <div class="col-md-6">
+                        <div class="detail-card objectives-card border">
+                            <h4 class="detail-block-title"><i class="fa-solid fa-bullseye text-dark"></i> System Objectives</h4>
+                            <ul class="detail-list">
+                                <li><i class="fa-solid fa-arrow-right obj-icon"></i> Streamline claim and leave processes.</li>
+                                <li><i class="fa-solid fa-arrow-right obj-icon"></i> Reduce paper-based HR administration.</li>
+                                <li><i class="fa-solid fa-arrow-right obj-icon"></i> Keep accurate employee records.</li>
+                                <li><i class="fa-solid fa-arrow-right obj-icon"></i> Improve HR efficiency and employee experience.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- System 5: TRX Integrated Management System -->
+    <section class="system-section" style="border-bottom: none;">
+        <div class="container">
+            <div class="system-header">
+                <span class="system-number">System 05</span>
+                <h2 class="system-title">TRX Integrated Management System</h2>
+            </div>
+            
+            <div class="system-image-wrapper">
+                <div class="browser-bar">
+                    <div class="browser-dots">
+                        <div class="browser-dot dot-red"></div>
+                        <div class="browser-dot dot-yellow"></div>
+                        <div class="browser-dot dot-green"></div>
+                    </div>
+                </div>
+                <!-- You can add the screenshot for System 5 here if you have it -->
+                <img src="https://placehold.co/1200x600/f8f9fa/a3a3a3?text=Cant+be+obtained+due+to+Private+and+Confidential+Issue." alt="TRX Integrated Management System Interface">
+            </div>
+
+            <!-- Explanation Details Template -->
+            <div class="system-details-box">
+                <div class="row g-4">
+                    <!-- 1. Short Brief -->
+                    <div class="col-12 text-center mb-2">
+                        <p class="text-muted" style="max-width: 800px; margin: 0 auto; line-height: 1.8;">
+                            <strong>Overview:</strong> Smart district command platform integrating Building Automation, Parking Guidance, Traffic Management, and Tunnel Control for real‑time monitoring and automated safety responses.
+                        </p>
+                    </div>
+                    
+                    <!-- 2. Functions -->
+                    <div class="col-md-6">
+                        <div class="detail-card functions-card border">
+                            <h4 class="detail-block-title"><i class="fa-solid fa-cogs text-gold"></i> Core Functions</h4>
+                            <ul class="detail-list">
+                                <li><i class="fa-solid fa-check func-icon"></i> Building Automation: monitor elevators/escalators and send real‑time fault alerts.</li>
+                                <li><i class="fa-solid fa-check func-icon"></i> Parking Guidance: show available spaces and guide drivers.</li>
+                                <li><i class="fa-solid fa-check func-icon"></i> Traffic Management: monitor and act to improve ground‑level traffic flow.</li>
+                                <li><i class="fa-solid fa-check func-icon"></i> Tunnel Control: detect fire/flood, trigger automatic safety measures and alerts.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 3. Objectives -->
+                    <div class="col-md-6">
+                        <div class="detail-card objectives-card border">
+                            <h4 class="detail-block-title"><i class="fa-solid fa-bullseye text-dark"></i> System Objectives</h4>
+                            <ul class="detail-list">
+                                <li><i class="fa-solid fa-arrow-right obj-icon"></i> Centralize district operations and control.</li>
+                                <li><i class="fa-solid fa-arrow-right obj-icon"></i> Enable real‑time monitoring and automated incident responses.</li>
+                                <li><i class="fa-solid fa-arrow-right obj-icon"></i> Improve public safety with automatic alerts/measures.</li>
+                                <li><i class="fa-solid fa-arrow-right obj-icon"></i> Reduce manual labour and enhance visitor experience.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bootstrap 5 Bundle JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

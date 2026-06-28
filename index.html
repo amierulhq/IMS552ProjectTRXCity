@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMS552 Project | TRX City</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --trx-gold: #C09A53;
+            --trx-dark: #1A1A1A;
+            --trx-light: #F9F9F9;
+            --text-muted: #666666;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--trx-light);
+            color: var(--trx-dark);
+        }
+
+        /* Header Branding */
+        header {
+            background-color: #ffffff;
+        }
+
+        /* Mobile-Friendly Scrollable Menu bar */
+        .custom-nav-wrapper {
+            background-color: #ffffff;
+            border-bottom: 1px solid #e0e0e0;
+            overflow-x: auto;
+            white-space: nowrap;
+            position: sticky;
+            top: 0;
+            z-index: 1030;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .custom-nav-wrapper::-webkit-scrollbar {
+            height: 4px;
+        }
+        .custom-nav-wrapper::-webkit-scrollbar-thumb {
+            background-color: var(--trx-gold);
+            border-radius: 4px;
+        }
+        .custom-nav {
+            display: flex;
+            padding: 15px 20px;
+            list-style: none;
+            margin: 0;
+        }
+        .custom-nav .nav-link {
+            color: var(--text-muted);
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 8px 16px;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        .custom-nav .nav-link:hover {
+            color: var(--trx-dark);
+        }
+        .custom-nav .nav-link.active {
+            color: var(--trx-gold);
+            border-bottom: 2px solid var(--trx-gold);
+        }
+
+        /* Background Video Hero Section */
+        .video-hero-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            background-color: #000;
+        }
+        .video-hero-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            opacity: 0.55; /* Balances video contrast and text readability */
+        }
+        .video-hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #ffffff;
+            text-align: center;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.6));
+            padding: 20px;
+        }
+
+        /* Utilities & Accents */
+        .text-gold { color: var(--trx-gold); }
+        .bg-gold { background-color: var(--trx-gold); }
+        .btn-trx {
+            border: 1px solid var(--trx-gold);
+            color: var(--trx-gold);
+            border-radius: 0;
+            padding: 10px 24px;
+            font-weight: 600;
+            font-size: 13px;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+        .btn-trx:hover {
+            background-color: var(--trx-gold);
+            color: white;
+        }
+
+        /* Timeline Styling */
+        .timeline-container {
+            position: relative;
+            padding: 40px 0;
+        }
+        @media (max-width: 768px) {
+            .timeline-line { display: none; }
+        }
+        .timeline-item {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+        .timeline-badge {
+            width: 60px;
+            height: 60px;
+            background-color: #fff;
+            border: 2px solid var(--trx-gold);
+            color: var(--trx-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px auto;
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+        .timeline-item:hover .timeline-badge {
+            background-color: var(--trx-gold);
+            color: #fff;
+            transform: scale(1.05);
+        }
+
+        /* Dark Premium Gallery Section */
+        .gallery-section {
+            background-color: #111111;
+            color: #ffffff;
+        }
+        .gallery-card {
+            background: transparent;
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+        .gallery-img-wrapper {
+            overflow: hidden;
+            border-radius: 4px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .gallery-img-wrapper img {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .gallery-card:hover .gallery-img-wrapper img {
+            transform: scale(1.04);
+        }
+
+        /* Team Cards & Leader Ribbon */
+        .team-card {
+            background: #ffffff;
+            border: none;
+            border-top: 4px solid var(--trx-gold);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+        .team-card:hover {
+            transform: translateY(-5px);
+        }
+        .leader-tag {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            font-size: 9px;
+            font-weight: 700;
+            color: var(--trx-gold);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border: 1px solid var(--trx-gold);
+            padding: 2px 8px;
+            background-color: rgba(255, 255, 255, 0.95);
+        }
+        .avatar-container {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background-color: #f3f3f3;
+            margin: 0 auto;
+            overflow: hidden;
+            border: 3px solid #f8f9fa;
+        }
+        .avatar-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="py-3 px-4 d-flex justify-content-between align-items-center border-bottom">
+        <div class="fw-bold fs-4 tracking-wider">IMS<span class="text-gold">.552</span></div>
+        <div class="text-muted small fw-semibold tracking-wide d-none d-sm-block">IMS552 Web-Slide Concept Presentation</div>
+    </header>
+
+    <div class="custom-nav-wrapper">
+        <ul class="custom-nav">
+            <li><a href="index.html" class="nav-link active">Introduction</a></li>
+            <li><a href="org-background.html" class="nav-link">Organization Background</a></li>
+            <li><a href="corporate-identity.html" class="nav-link">Vision & Mission</a></li>
+            <li><a href="structure-chart.html" class="nav-link">Structure Chart</a></li>
+            <li><a href="functional-desc.html" class="nav-link">Functional Description</a></li>
+            <li><a href="roles-functions.html" class="nav-link">Roles & Functions</a></li>
+            <li><a href="data-used.html" class="nav-link">Data Used</a></li>
+            <li><a href="is-list.html" class="nav-link">List of IS</a></li>
+            <li><a href="is-types.html" class="nav-link">Types of IS</a></li>
+            <li><a href="is-details.html" class="nav-link">Details of Selected IS</a></li>
+            <li><a href="is-problems.html" class="nav-link">IS Problems</a></li>
+            <li><a href="swot-analysis.html" class="nav-link">SWOT Analysis</a></li>
+            <li><a href="recommendations.html" class="nav-link">Recommendations</a></li>
+            <li><a href="conclusion.html" class="nav-link">Conclusion</a></li>
+        </ul>
+    </div>
+
+    <div class="video-hero-container">
+        <video autoplay muted loop playsinline class="video-hero-bg">
+            <source src="TRXVID.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="video-hero-overlay">
+            <h6 class="text-gold fw-bold text-uppercase tracking-wider mb-2" style="font-size: 14px;">Welcome to</h6>
+            <h1 class="display-4 fw-bold text-uppercase tracking-wide mb-3" style="letter-spacing: 2px;">FINAL PROJECT PRESENTATION</h1>
+            <p class="lead max-w-md px-3 small text-uppercase tracking-widest text-white-50">IMS552 Information Systems Management</p>
+        </div>
+    </div>
+    
+    <section class="container my-5 py-4">
+        <div class="text-center mb-5">
+            <h6 class="text-gold fw-bold text-uppercase tracking-wide">The Team</h6>
+            <h2 class="fw-bold">Project Members</h2>
+        </div>
+
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-4 justify-content-center">
+            
+            <div class="col">
+                <div class="card h-100 team-card p-4 text-center">
+                    <div class="avatar-container mb-3">
+                        <img src="PER1.jpg" alt="Member One" onerror="this.src='https://placehold.co/150x150/f0f0f0/a3a3a3?text=Member+1'">
+                    </div>
+                    <h6 class="fw-bold mb-1 text-dark">Mohammad Akmal Faizudin</h6>
+                    <p class="text-muted small mb-0">2025147747</p>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card h-100 team-card p-4 text-center">
+                    <div class="avatar-container mb-3">
+                        <img src="PER2.jpg" alt="Member Two" onerror="this.src='https://placehold.co/150x150/f0f0f0/a3a3a3?text=Member+2'">
+                    </div>
+                    <h6 class="fw-bold mb-1 text-dark">Izyan Farhana</h6>
+                    <p class="text-muted small mb-0">2025189901</p>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card h-100 team-card p-4 text-center">
+                    <div class="leader-tag">Group Leader</div>
+                    <div class="avatar-container mb-3 mt-2">
+                        <img src="PER3.jpg" alt="Group Leader" onerror="this.src='https://placehold.co/150x150/c09a53/ffffff?text=Leader'">
+                    </div>
+                    <h6 class="fw-bold mb-1 text-dark">Muhammad Amierul Haqeem</h6>
+                    <p class="text-muted small mb-0">2025302029</p>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card h-100 team-card p-4 text-center">
+                    <div class="avatar-container mb-3">
+                        <img src="PER4.jpg" alt="Member Four" onerror="this.src='https://placehold.co/150x150/f0f0f0/a3a3a3?text=Member+4'">
+                    </div>
+                    <h6 class="fw-bold mb-1 text-dark">Mohamad Nurthasnif Zaffran</h6>
+                    <p class="text-muted small mb-0">2025367558</p>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card h-100 team-card p-4 text-center">
+                    <div class="avatar-container mb-3">
+                        <img src="PER5.jpg" alt="Member Five" onerror="this.src='https://placehold.co/150x150/f0f0f0/a3a3a3?text=Member+5'">
+                    </div>
+                    <h6 class="fw-bold mb-1 text-dark">Rusydan bin Jaman</h6>
+                    <p class="text-muted small mb-0">2025180301</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <main class="container my-5 py-2">
+
+        <hr class="my-5 opacity-25">
+
+        <section class="my-5">
+            <div class="text-center mb-5">
+                <h6 class="text-gold fw-bold text-uppercase tracking-wide">Project Milestones</h6>
+                <h2 class="fw-bold">Interview Journey Timeline</h2>
+            </div>
+            
+            <div class="timeline-container">
+                <div class="timeline-line"></div>
+                <div class="row g-4 justify-content-center">
+                    <div class="col-md-4 col-sm-10 timeline-item">
+                        <div class="timeline-badge"><i class="fa-solid fa-paper-plane"></i></div>
+                        <h5 class="fw-bold mb-1 fs-6 text-uppercase">Submit Application</h5>
+                        <p class="text-muted small px-3">28 April 2026</p>
+                    </div>
+                    <div class="col-md-4 col-sm-10 timeline-item">
+                        <div class="timeline-badge"><i class="fa-solid fa-envelope-open-text"></i></div>
+                        <h5 class="fw-bold mb-1 fs-6 text-uppercase">Interview Confirmation</h5>
+                        <p class="text-muted small px-3">29 April 2026</p>
+                    </div>
+                    <div class="col-md-4 col-sm-10 timeline-item">
+                        <div class="timeline-badge"><i class="fa-solid fa-comments"></i></div>
+                        <h5 class="fw-bold mb-1 fs-6 text-uppercase">Go For Interview</h5>
+                        <p class="text-muted small px-3">7 May 2026</p>
+                    </div>
+                </div>
+            </div>
+        <div class="row g-5 align-items-center my-4">
+            <div class="col-lg-6">
+                <h6 class="text-gold fw-bold text-uppercase tracking-wide mb-2">About Our Project</h6>
+                <h2 class="display-6 fw-bold mb-4 text-dark">Exploring Information Systems Management at TRX City Sdn. Bhd.</h2>
+                <p class="text-muted mb-4">This project aims to analyze the implementation and management of information systems within TRX City Sdn Bhd, the master developer of Tun Razak Exchange (TRX), Malaysia’s international financial district. Through research, observation, and interview sessions conducted with the organization, this project explores how technology, digital infrastructure, and information systems support organizational operations, communication, and strategic decision-making. The study also examines the effectiveness, challenges, and future opportunities of information systems in supporting a modern smart-city development environment.</p>
+                <p class="text-muted mb-4">This web-style presentation provides an interactive overview of the organization, its information systems, operational structure, and digital management practices at <strong>TRX City Sdn. Bhd.</strong> to streamline development frameworks.</p>
+                <a href="org-background.html" class="btn btn-trx text-uppercase">Explore Background</a>
+            </div>
+            <div class="col-lg-6">
+                <div class="shadow-sm rounded overflow-hidden">
+                    <img src="IMG1.jpeg" alt="TRX Buildings" class="img-fluid w-100 object-fit-cover" style="height: 380px;">
+                </div>
+            </div>
+        </div>
+        </section>
+
+    </main>
+
+    <section class="gallery-section py-5 my-5">
+        <div class="container py-3">
+            <div class="mb-5 text-center">
+                <h6 class="text-gold fw-bold text-uppercase tracking-wide">Our District</h6>
+                <h2 class="fw-bold text-white">Project Gallery</h2>
+                <p class="text-white-50 small max-w-xl mx-auto mt-2">Visual verification documentation as the proof of our Academic Interview session.</p>
+            </div>
+
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                <div class="col">
+                    <div class="card gallery-card">
+                        <div class="gallery-img-wrapper">
+                            <img src="GAL1.jpg" alt="Interview Session 1">
+                        </div>
+                        <div class="mt-3">
+                            <h6 class="fw-bold text-white mb-1">The Office of TRX City Sdn. Bhd.</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card gallery-card">
+                        <div class="gallery-img-wrapper">
+                            <img src="GAL2.jpg" alt="Interview Session 2">
+                        </div>
+                        <div class="mt-3">
+                            <h6 class="fw-bold text-white mb-1">Academic Interview Session</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card gallery-card">
+                        <div class="gallery-img-wrapper">
+                            <img src="GAL3.jpg" alt="Interview Session 3">
+                        </div>
+                        <div class="mt-3">
+                            <h6 class="fw-bold text-white mb-1">Group Photo with TRX City Team</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

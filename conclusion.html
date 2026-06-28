@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conclusion | TRX City</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --trx-gold: #C09A53;
+            --trx-dark: #1A1A1A;
+            --trx-light: #F9F9F9;
+            --text-muted: #666666;
+        }
+
+        body { font-family: 'Montserrat', sans-serif; background-color: var(--trx-light); color: var(--trx-dark); }
+
+        /* Navigation Bar */
+        .custom-nav-wrapper { background-color: #ffffff; border-bottom: 1px solid #e0e0e0; overflow-x: auto; white-space: nowrap; position: sticky; top: 0; z-index: 1030; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        .custom-nav-wrapper::-webkit-scrollbar { height: 4px; }
+        .custom-nav-wrapper::-webkit-scrollbar-thumb { background-color: var(--trx-gold); border-radius: 4px; }
+        .custom-nav { display: flex; padding: 15px 20px; list-style: none; margin: 0; }
+        .custom-nav .nav-link { color: var(--text-muted); font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; padding: 8px 16px; border-bottom: 2px solid transparent; transition: all 0.3s ease; text-decoration: none; }
+        .custom-nav .nav-link:hover { color: var(--trx-dark); }
+        .custom-nav .nav-link.active { color: var(--trx-gold); border-bottom: 2px solid var(--trx-gold); }
+
+        .text-gold { color: var(--trx-gold); }
+        .section-title { font-weight: 700; color: var(--trx-dark); margin-bottom: 20px; position: relative; padding-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
+        .section-title::after { content: ''; position: absolute; left: 50%; bottom: 0; width: 60px; height: 3px; background-color: var(--trx-gold); transform: translateX(-50%); }
+
+        /* =========================================
+           HERO IMAGE PLACEHOLDER
+           ========================================= */
+        .conclusion-hero {
+            max-width: 1000px;
+            margin: 0 auto 50px auto;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+            border: 4px solid #ffffff;
+            position: relative;
+        }
+        
+        .conclusion-hero img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .conclusion-hero:hover img {
+            transform: scale(1.02);
+        }
+
+        /* =========================================
+           CONCLUSION POINTS (GRID CARDS)
+           ========================================= */
+        .point-card {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 35px 30px;
+            height: 100%;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.03);
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+            border-bottom: 3px solid transparent;
+        }
+
+        .point-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+            border-bottom-color: var(--trx-gold);
+        }
+
+        .point-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--trx-dark);
+            color: var(--trx-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin: 0 auto 20px auto;
+            transition: all 0.3s ease;
+        }
+
+        .point-card:hover .point-icon {
+            background: var(--trx-gold);
+            color: #ffffff;
+            transform: scale(1.1);
+        }
+
+        .point-title {
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--trx-dark);
+            margin-bottom: 15px;
+        }
+
+        .point-desc {
+            font-size: 14px;
+            line-height: 1.7;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        /* =========================================
+           APPRECIATION / THANK YOU BANNER
+           ========================================= */
+        .thank-you-banner {
+            background: linear-gradient(135deg, var(--trx-dark) 0%, #2a2a2a 100%);
+            border-radius: 12px;
+            padding: 60px 40px;
+            text-align: center;
+            color: #ffffff;
+            margin-top: 80px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        /* Subtle background pattern */
+        .thank-you-banner::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: radial-gradient(rgba(192, 154, 83, 0.1) 2px, transparent 2px);
+            background-size: 30px 30px;
+            opacity: 0.5;
+            z-index: 0;
+        }
+
+        .ty-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .ty-title {
+            font-size: 42px;
+            font-weight: 800;
+            color: var(--trx-gold);
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .ty-subtitle {
+            font-size: 18px;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 600px;
+            margin: 0 auto 40px auto;
+            line-height: 1.6;
+        }
+
+        .lecturer-box {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(192, 154, 83, 0.3);
+            padding: 15px 40px;
+            border-radius: 50px;
+            backdrop-filter: blur(5px);
+        }
+
+        .lecturer-box p {
+            margin: 0;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .lecturer-box h5 {
+            margin: 5px 0 0 0;
+            font-size: 20px;
+            font-weight: 700;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="py-3 px-4 d-flex justify-content-between align-items-center border-bottom bg-white">
+        <div class="fw-bold fs-4 tracking-wider">IMS<span class="text-gold">.552</span></div>
+        <div class="text-muted small fw-semibold tracking-wide d-none d-sm-block">IMS552 Web-Slide Concept Presentation</div>
+    </header>
+
+    <div class="custom-nav-wrapper">
+        <ul class="custom-nav">
+            <li><a href="index.html" class="nav-link">Introduction</a></li>
+            <li><a href="org-background.html" class="nav-link">Organization Background</a></li>
+            <li><a href="corporate-identity.html" class="nav-link">Vision & Mission</a></li>
+            <li><a href="structure-chart.html" class="nav-link">Structure Chart</a></li>
+            <li><a href="functional-desc.html" class="nav-link">Functional Description</a></li>
+            <li><a href="roles-functions.html" class="nav-link">Roles & Functions</a></li>
+            <li><a href="data-used.html" class="nav-link">Data Used</a></li>
+            <li><a href="is-list.html" class="nav-link">List of IS</a></li>
+            <li><a href="is-types.html" class="nav-link">Types of IS</a></li>
+            <li><a href="is-details.html" class="nav-link">Details of Selected IS</a></li>
+            <li><a href="is-problems.html" class="nav-link">IS Problems</a></li>
+            <li><a href="swot-analysis.html" class="nav-link">SWOT Analysis</a></li>
+            <li><a href="recommendations.html" class="nav-link">Recommendations</a></li>
+            <li><a href="conclusion.html" class="nav-link active">Conclusion</a></li>
+        </ul>
+    </div>
+
+    <main class="container my-5 py-4">
+        
+        <div class="text-center mb-5">
+            <h6 class="text-gold fw-bold text-uppercase tracking-wide">Project Summary</h6>
+            <h1 class="fw-bold display-6 section-title">Conclusion</h1>
+        </div>
+
+        <div class="conclusion-hero">
+            <img src="IMG7.jpg">
+        </div>
+
+        <div class="row g-4 justify-content-center">
+            
+            <div class="col-lg-3 col-md-6">
+                <div class="point-card">
+                    <div class="point-icon"><i class="fa-solid fa-building-circle-check"></i></div>
+                    <h4 class="point-title">Core Value</h4>
+                    <p class="point-desc">The IT Asset Management System acts as a highly critical component in supporting the smooth, day-to-day corporate operations of TRX City Sdn Bhd.</p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="point-card">
+                    <div class="point-icon"><i class="fa-solid fa-barcode"></i></div>
+                    <h4 class="point-title">Technological Edge</h4>
+                    <p class="point-desc">Barcode technology and centralized databases empower the IT Department to track, audit, and manage hardware systematically, far surpassing traditional methods.</p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="point-card">
+                    <div class="point-icon"><i class="fa-solid fa-puzzle-piece"></i></div>
+                    <h4 class="point-title">Strategic Solutions</h4>
+                    <p class="point-desc">Internal constraints, such as reliance on manual input and isolated data, can be effectively resolved through comprehensive API system integration proposals.</p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="point-card">
+                    <div class="point-icon"><i class="fa-solid fa-seedling"></i></div>
+                    <h4 class="point-title">Future Readiness</h4>
+                    <p class="point-desc">Long-term investments protect assets from loss and ensure TRX City remains ready to drive world-class infrastructure development with solid IT support.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="thank-you-banner">
+            <div class="ty-content">
+                <h2 class="ty-title">Thank You</h2>
+                <p class="ty-subtitle">We appreciate your time and attention throughout this presentation. We hope this web experience provided clear and valuable insights into the Information Systems of TRX City Sdn Bhd.</p>
+                
+                <div class="lecturer-box">
+                    <p>Special Thanks To Our Lecturer</p>
+                    <h5>Dr. Hasnah binti Hashim</h5>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

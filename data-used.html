@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Used | TRX City</title>
+    
+    <!-- Bootstrap 5 CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Montserrat Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --trx-gold: #C09A53;
+            --trx-dark: #1A1A1A;
+            --trx-light: #F9F9F9;
+            --text-muted: #666666;
+        }
+
+        body { font-family: 'Montserrat', sans-serif; background-color: var(--trx-light); color: var(--trx-dark); }
+
+        /* Navigation Bar */
+        .custom-nav-wrapper { background-color: #ffffff; border-bottom: 1px solid #e0e0e0; overflow-x: auto; white-space: nowrap; position: sticky; top: 0; z-index: 1030; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        .custom-nav-wrapper::-webkit-scrollbar { height: 4px; }
+        .custom-nav-wrapper::-webkit-scrollbar-thumb { background-color: var(--trx-gold); border-radius: 4px; }
+        .custom-nav { display: flex; padding: 15px 20px; list-style: none; margin: 0; }
+        .custom-nav .nav-link { color: var(--text-muted); font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; padding: 8px 16px; border-bottom: 2px solid transparent; transition: all 0.3s ease; text-decoration: none; }
+        .custom-nav .nav-link:hover { color: var(--trx-dark); }
+        .custom-nav .nav-link.active { color: var(--trx-gold); border-bottom: 2px solid var(--trx-gold); }
+
+        .text-gold { color: var(--trx-gold); }
+
+        /* Custom Flexbox Layout for Data Cards (Fixes the gap issue) */
+        .data-card {
+            display: flex;
+            flex-direction: column; /* Stacks on mobile */
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            margin-bottom: 30px;
+            border-left: 5px solid var(--trx-gold);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        
+        @media (min-width: 768px) {
+            .data-card {
+                flex-direction: row; /* Horizontal on desktop */
+                align-items: stretch; /* Forces left and right sides to be exactly the same height */
+            }
+        }
+
+        .data-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 6px 25px rgba(0,0,0,0.06);
+        }
+        
+        .data-meta-container {
+            background: var(--trx-dark);
+            color: #ffffff;
+            padding: 40px 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            flex: 0 0 280px; /* Locks the width of the black box */
+        }
+        
+        .data-icon {
+            font-size: 36px;
+            color: var(--trx-gold);
+            margin-bottom: 15px;
+        }
+
+        .data-content-container {
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            flex: 1; /* Takes up all remaining space */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header class="py-3 px-4 d-flex justify-content-between align-items-center border-bottom bg-white">
+        <div class="fw-bold fs-4 tracking-wider">IMS<span class="text-gold">.552</span></div>
+        <div class="text-muted small fw-semibold tracking-wide d-none d-sm-block">IMS552 Web-Slide Concept Presentation</div>
+    </header>
+
+    <!-- Navigation Menu -->
+    <div class="custom-nav-wrapper">
+        <ul class="custom-nav">
+            <li><a href="index.html" class="nav-link">Introduction</a></li>
+            <li><a href="org-background.html" class="nav-link">Organization Background</a></li>
+            <li><a href="corporate-identity.html" class="nav-link">Vision & Mission</a></li>
+            <li><a href="structure-chart.html" class="nav-link">Structure Chart</a></li>
+            <li><a href="functional-desc.html" class="nav-link">Functional Description</a></li>
+            <li><a href="roles-functions.html" class="nav-link">Roles & Functions</a></li>
+            <li><a href="data-used.html" class="nav-link active">Data Used</a></li>
+            <li><a href="is-list.html" class="nav-link">List of IS</a></li>
+            <li><a href="is-types.html" class="nav-link">Types of IS</a></li>
+            <li><a href="is-details.html" class="nav-link">Details of Selected IS</a></li>
+            <li><a href="is-problems.html" class="nav-link">IS Problems</a></li>
+            <li><a href="swot-analysis.html" class="nav-link">SWOT Analysis</a></li>
+            <li><a href="recommendations.html" class="nav-link">Recommendations</a></li>
+            <li><a href="conclusion.html" class="nav-link">Conclusion</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container my-5 py-3">
+        <div class="text-center mb-5">
+            <h6 class="text-gold fw-bold text-uppercase tracking-wide">Information Resources</h6>
+            <h1 class="fw-bold display-6">Data Used in Organization</h1>
+            <p class="text-muted mt-3" style="max-width: 700px; margin: 0 auto;">Analyzing the five critical data streams driving operations, resource tracking, and smart district management within TRX City Sdn Bhd.</p>
+        </div>
+
+        <!-- Data Container 1: Asset Data -->
+        <div class="data-card">
+            <div class="data-meta-container">
+                <i class="fa-solid fa-server data-icon"></i>
+                <h4 class="fw-bold mb-0">Asset Data</h4>
+            </div>
+            <div class="data-content-container">
+                <p class="text-muted mb-0" style="line-height: 1.7;">
+                    One of the main types of data used in the organization is asset data, which is managed through the IT Asset Management System. This includes information about laptops, personal computers, servers, network equipment, and data center resources. Each asset is given a unique barcode so that it can be traced easily during check-in, check-out, auditing, and warranty tracking. This type of data helps the IT Department keep records accurate and up to date, while also making it easier to monitor hardware usage and asset movement.
+                </p>
+            </div>
+        </div>
+
+        <!-- Data Container 2: Financial Data -->
+        <div class="data-card">
+            <div class="data-meta-container">
+                <i class="fa-solid fa-file-invoice-dollar data-icon"></i>
+                <h4 class="fw-bold mb-0">Financial Data</h4>
+            </div>
+            <div class="data-content-container">
+                <p class="text-muted mb-0" style="line-height: 1.7;">
+                    Another important category is financial data, which is handled through the IFKA System. This data includes payments, invoices, financial records, and other transaction-related information used by the finance department. Because IFKA is described as the backbone of TRX’s business operations, financial data must be protected, accurate, and available for daily processing. The system also supports data recovery if errors occur during input, which shows that financial data is treated as a critical organizational resource.
+                </p>
+            </div>
+        </div>
+
+        <!-- Data Container 3: Facility Data -->
+        <div class="data-card">
+            <div class="data-meta-container">
+                <i class="fa-solid fa-screwdriver-wrench data-icon"></i>
+                <h4 class="fw-bold mb-0">Facility & Maintenance Data</h4>
+            </div>
+            <div class="data-content-container">
+                <p class="text-muted mb-0" style="line-height: 1.7;">
+                    TRX also relies on facility and maintenance data through the Facility Management System (FMS). This includes maintenance schedules, work orders, equipment status, and records of daily facility-related activities. The organization uses this data to ensure that operations run smoothly and that maintenance tasks are tracked properly. By keeping detailed records of maintenance work, TRX can reduce disruptions, plan repairs more effectively, and maintain a safe and efficient working environment.
+                </p>
+            </div>
+        </div>
+
+        <!-- Data Container 4: Human Resource Data -->
+        <div class="data-card">
+            <div class="data-meta-container">
+                <i class="fa-solid fa-users-gear data-icon"></i>
+                <h4 class="fw-bold mb-0">Human Resource Data</h4>
+            </div>
+            <div class="data-content-container">
+                <p class="text-muted mb-0" style="line-height: 1.7;">
+                    In addition, the organization uses human resource data through the Employee Claim System (ESS). This includes employee claim submissions, holiday claims, approval status, and related HR records. Such data helps the HR department manage employee requests more efficiently and maintain accurate personnel records. Since the system is used for routine employee transactions, the data must be organized and accessible so that claims can be processed without delay.
+                </p>
+            </div>
+        </div>
+
+        <!-- Data Container 5: Real-time Operational Data -->
+        <div class="data-card">
+            <div class="data-meta-container">
+                <i class="fa-solid fa-satellite-dish data-icon"></i>
+                <h4 class="fw-bold mb-0">Real-Time Ops Data</h4>
+            </div>
+            <div class="data-content-container">
+                <p class="text-muted mb-0" style="line-height: 1.7;">
+                    For district operations, TRX uses real-time operational data through the TRX Integrated Management System. This data comes from building automation, parking guidance, traffic management, tunnel control, and smart sensors. It helps district management monitor conditions in real time and respond quickly to alerts or emergencies. Because TRX operates as a smart district, this type of data is essential for safety, coordination, and service optimization.
+                </p>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Bootstrap 5 Bundle JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

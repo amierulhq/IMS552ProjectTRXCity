@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IS Problems & Performance | TRX City</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --trx-gold: #C09A53;
+            --trx-dark: #1A1A1A;
+            --trx-light: #F9F9F9;
+            --text-muted: #666666;
+            --alert-red: #ef4444;
+            --alert-amber: #f59e0b;
+        }
+
+        body { font-family: 'Montserrat', sans-serif; background-color: var(--trx-light); color: var(--trx-dark); }
+
+        /* Navigation Bar */
+        .custom-nav-wrapper { background-color: #ffffff; border-bottom: 1px solid #e0e0e0; overflow-x: auto; white-space: nowrap; position: sticky; top: 0; z-index: 1030; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        .custom-nav-wrapper::-webkit-scrollbar { height: 4px; }
+        .custom-nav-wrapper::-webkit-scrollbar-thumb { background-color: var(--trx-gold); border-radius: 4px; }
+        .custom-nav { display: flex; padding: 15px 20px; list-style: none; margin: 0; }
+        .custom-nav .nav-link { color: var(--text-muted); font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; padding: 8px 16px; border-bottom: 2px solid transparent; transition: all 0.3s ease; text-decoration: none; }
+        .custom-nav .nav-link:hover { color: var(--trx-dark); }
+        .custom-nav .nav-link.active { color: var(--trx-gold); border-bottom: 2px solid var(--trx-gold); }
+
+        .text-gold { color: var(--trx-gold); }
+        .section-title { font-weight: 700; color: var(--trx-dark); margin-bottom: 20px; position: relative; padding-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
+        .section-title::after { content: ''; position: absolute; left: 0; bottom: 0; width: 60px; height: 3px; background-color: var(--trx-gold); }
+        .text-center .section-title::after { left: 50%; transform: translateX(-50%); }
+
+        /* =========================================
+           PART 1: RISK FACTOR CARDS (IS PROBLEMS)
+           ========================================= */
+        .problem-section {
+            background-color: #ffffff;
+            padding: 60px 0;
+            border-bottom: 1px solid #eaeaea;
+        }
+
+        .risk-card {
+            background: var(--trx-dark);
+            color: #ffffff;
+            padding: 40px 30px;
+            border-radius: 8px;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid var(--alert-amber);
+            z-index: 1;
+        }
+
+        .risk-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            border-top-color: var(--alert-red);
+        }
+
+        /* Subtle glowing background effect on hover */
+        .risk-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at top right, rgba(239, 68, 68, 0.1), transparent 60%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: -1;
+        }
+        .risk-card:hover::before { opacity: 1; }
+
+        .risk-icon {
+            font-size: 36px;
+            color: var(--alert-amber);
+            margin-bottom: 20px;
+            transition: color 0.3s;
+        }
+        .risk-card:hover .risk-icon { color: var(--alert-red); }
+
+        .risk-title { font-size: 18px; font-weight: 700; margin-bottom: 15px; letter-spacing: 0.5px; }
+        .risk-desc { color: #a0a0a0; font-size: 14px; line-height: 1.7; margin-bottom: 0; }
+
+        /* =========================================
+           PART 2: IPO PIPELINE (IS PERFORMANCE)
+           ========================================= */
+        .performance-section {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .pipeline-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: stretch;
+            position: relative;
+            margin-top: 50px;
+            gap: 20px;
+        }
+
+        @media (max-width: 991px) {
+            .pipeline-wrapper { flex-direction: column; }
+        }
+
+        .pipeline-node {
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 30px;
+            flex: 1;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+            border-top: 4px solid var(--trx-gold);
+            z-index: 2;
+        }
+
+        .node-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .node-icon {
+            width: 50px; height: 50px;
+            background: rgba(192, 154, 83, 0.1);
+            color: var(--trx-gold);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 20px;
+        }
+
+        .node-title { font-size: 18px; font-weight: 700; color: var(--trx-dark); margin: 0; text-transform: uppercase; }
+        .node-list { list-style: none; padding: 0; margin: 0; }
+        .node-list li { font-size: 13px; color: var(--text-muted); margin-bottom: 10px; display: flex; align-items: flex-start; gap: 10px; }
+        .node-list li i { color: var(--trx-gold); margin-top: 3px; font-size: 10px; }
+
+        /* Animated connecting lines between nodes (Desktop only) */
+        .flow-line {
+            position: absolute;
+            top: 50%;
+            width: 30px;
+            height: 4px;
+            background: #e0e0e0;
+            z-index: 1;
+            transform: translateY(-50%);
+            overflow: hidden;
+        }
+        .flow-line-1 { left: calc(33.33% - 5px); }
+        .flow-line-2 { left: calc(66.66% + 5px); }
+        
+        .flow-packet {
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, var(--trx-gold), transparent);
+            animation: flowAnim 2s infinite linear;
+        }
+        @keyframes flowAnim {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        @media (max-width: 991px) {
+            .flow-line { display: none; }
+        }
+
+        /* Conclusion Banner */
+        .perf-conclusion {
+            background: #ffffff;
+            border-left: 5px solid var(--trx-gold);
+            padding: 30px 40px;
+            margin-top: 50px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.04);
+            border-radius: 0 8px 8px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="py-3 px-4 d-flex justify-content-between align-items-center border-bottom bg-white">
+        <div class="fw-bold fs-4 tracking-wider">IMS<span class="text-gold">.552</span></div>
+        <div class="text-muted small fw-semibold tracking-wide d-none d-sm-block">IMS552 Web-Slide Concept Presentation</div>
+    </header>
+
+    <div class="custom-nav-wrapper">
+        <ul class="custom-nav">
+            <li><a href="index.html" class="nav-link">Introduction</a></li>
+            <li><a href="org-background.html" class="nav-link">Organization Background</a></li>
+            <li><a href="corporate-identity.html" class="nav-link">Vision & Mission</a></li>
+            <li><a href="structure-chart.html" class="nav-link">Structure Chart</a></li>
+            <li><a href="functional-desc.html" class="nav-link">Functional Description</a></li>
+            <li><a href="roles-functions.html" class="nav-link">Roles & Functions</a></li>
+            <li><a href="data-used.html" class="nav-link">Data Used</a></li>
+            <li><a href="is-list.html" class="nav-link">List of IS</a></li>
+            <li><a href="is-types.html" class="nav-link">Types of IS</a></li>
+            <li><a href="is-details.html" class="nav-link">Details of Selected IS</a></li>
+            <li><a href="is-problems.html" class="nav-link active">IS Problems</a></li>
+            <li><a href="swot-analysis.html" class="nav-link">SWOT Analysis</a></li>
+            <li><a href="recommendations.html" class="nav-link">Recommendations</a></li>
+            <li><a href="conclusion.html" class="nav-link">Conclusion</a></li>
+        </ul>
+    </div>
+
+    <section class="problem-section">
+        <div class="container py-4">
+            <div class="text-center mb-5">
+                <h6 class="text-danger fw-bold text-uppercase tracking-wide">System Vulnerabilities</h6>
+                <h1 class="fw-bold display-6 section-title mx-auto">Information System Problems</h1>
+                <p class="text-muted mt-3 mx-auto" style="max-width: 800px;">Although the IT Asset Management System simplifies daily operations through individual barcodes, the IT Department still faces several major challenges that risk the validity of reference data.</p>
+            </div>
+
+            <div class="row g-4 justify-content-center">
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="risk-card">
+                        <i class="fa-solid fa-user-clock risk-icon"></i>
+                        <h3 class="risk-title">Human Error & Dependency</h3>
+                        <p class="risk-desc">The most significant problem is that the system is too dependent on staff discipline to enter data and perform scans consistently. If staff forget or delay updating records during the hardware check-in/check-out process, the information in the central database becomes inaccurate and outdated.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="risk-card">
+                        <i class="fa-solid fa-network-wired risk-icon"></i>
+                        <h3 class="risk-title">Integration Silos</h3>
+                        <p class="risk-desc">Problems arise if the system is not well integrated with other support systems or departmental systems at TRX City Sdn Bhd. This lack of seamless integration causes the monitoring and cross-reporting process to be inefficient, forcing the IT Department to manage asset reporting separately.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="risk-card">
+                        <i class="fa-solid fa-triangle-exclamation risk-icon"></i>
+                        <h3 class="risk-title">Recovery & Correction Delays</h3>
+                        <p class="risk-desc">The final challenge occurs when a critical system error or data entry error happens. Even though there is a data recovery plan via data center backups, the process of re-verifying, manually correcting data, or reverting data still takes time and disrupts the smooth monitoring of daily operations.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="performance-section">
+        <div class="container py-2">
+            <div class="text-center mb-5">
+                <h6 class="text-gold fw-bold text-uppercase tracking-wide">Operational Efficiency</h6>
+                <h1 class="fw-bold display-6 section-title mx-auto">Performance of Information System</h1>
+                <p class="text-muted mt-3 mx-auto" style="max-width: 800px;">The performance of the ITAMS is assessed based on its ability to process inputs, carry out backend activities, and produce the necessary outputs required by the IT Department.</p>
+            </div>
+
+            <div class="pipeline-wrapper">
+                
+                <div class="flow-line flow-line-1"><div class="flow-packet"></div></div>
+                <div class="flow-line flow-line-2"><div class="flow-packet" style="animation-delay: 1s;"></div></div>
+
+                <div class="pipeline-node">
+                    <div class="node-header">
+                        <div class="node-icon"><i class="fa-solid fa-keyboard"></i></div>
+                        <h4 class="node-title">1. Input</h4>
+                    </div>
+                    <p class="text-muted small mb-3">The system functions well in receiving various important data streams efficiently:</p>
+                    <ul class="node-list">
+                        <li><i class="fa-solid fa-chevron-right"></i> Asset type & barcode number</li>
+                        <li><i class="fa-solid fa-chevron-right"></i> Location & department details</li>
+                        <li><i class="fa-solid fa-chevron-right"></i> Responsible user name</li>
+                        <li><i class="fa-solid fa-chevron-right"></i> Warranty status & access control details</li>
+                    </ul>
+                </div>
+
+                <div class="pipeline-node">
+                    <div class="node-header">
+                        <div class="node-icon"><i class="fa-solid fa-server"></i></div>
+                        <h4 class="node-title">2. Processing</h4>
+                    </div>
+                    <p class="text-muted small mb-3">All input data is processed centrally to ensure records are always properly aligned:</p>
+                    <ul class="node-list">
+                        <li><i class="fa-solid fa-chevron-right"></i> Centralized database processing</li>
+                        <li><i class="fa-solid fa-chevron-right"></i> Supported by company IT infrastructure</li>
+                        <li><i class="fa-solid fa-chevron-right"></i> Powered by physical servers</li>
+                        <li><i class="fa-solid fa-chevron-right"></i> Backed by stable data center resources</li>
+                    </ul>
+                </div>
+
+                <div class="pipeline-node">
+                    <div class="node-header">
+                        <div class="node-icon"><i class="fa-solid fa-chart-line"></i></div>
+                        <h4 class="node-title">3. Output</h4>
+                    </div>
+                    <p class="text-muted small mb-3">The system efficiently produces outputs that are highly helpful to management:</p>
+                    <ul class="node-list">
+                        <li><i class="fa-solid fa-chevron-right"></i> Periodic audit reports</li>
+                        <li><i class="fa-solid fa-chevron-right"></i> Downloadable asset lists</li>
+                        <li><i class="fa-solid fa-chevron-right"></i> Traceability records</li>
+                        <li><i class="fa-solid fa-chevron-right"></i> Latest warranty status reports</li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="perf-conclusion">
+                <div class="d-flex align-items-center gap-3 mb-2">
+                    <i class="fa-solid fa-circle-check fs-4 text-gold"></i>
+                    <h5 class="fw-bold mb-0 text-dark">Overall Performance: Satisfactory Level</h5>
+                </div>
+                <p class="text-muted mb-0 mt-2" style="font-size: 15px; line-height: 1.6;">With this systematic output, the overall performance of technology inventory management at TRX City Sdn Bhd allows asset lifecycle monitoring to be executed more systematically, completely eliminating the need to rely on outdated, physical paper records.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

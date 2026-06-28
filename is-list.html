@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List of IS | TRX City</title>
+    
+    <!-- Bootstrap 5 CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Montserrat Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --trx-gold: #C09A53;
+            --trx-dark: #1A1A1A;
+            --trx-light: #F9F9F9;
+            --text-muted: #666666;
+            --bg-alt: #f1f3f5;
+        }
+
+        body { font-family: 'Montserrat', sans-serif; background-color: #ffffff; color: var(--trx-dark); margin: 0; padding: 0; }
+
+        /* Navigation Bar */
+        .custom-nav-wrapper { background-color: #ffffff; border-bottom: 1px solid #e0e0e0; overflow-x: auto; white-space: nowrap; position: sticky; top: 0; z-index: 1030; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        .custom-nav-wrapper::-webkit-scrollbar { height: 4px; }
+        .custom-nav-wrapper::-webkit-scrollbar-thumb { background-color: var(--trx-gold); border-radius: 4px; }
+        .custom-nav { display: flex; padding: 15px 20px; list-style: none; margin: 0; }
+        .custom-nav .nav-link { color: var(--text-muted); font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; padding: 8px 16px; border-bottom: 2px solid transparent; transition: all 0.3s ease; text-decoration: none; }
+        .custom-nav .nav-link:hover { color: var(--trx-dark); }
+        .custom-nav .nav-link.active { color: var(--trx-gold); border-bottom: 2px solid var(--trx-gold); }
+
+        .text-gold { color: var(--trx-gold); }
+
+        /* System Showcase Sections */
+        .system-section {
+            padding: 80px 0;
+            border-bottom: 1px solid #eaeaea;
+        }
+        
+        /* Alternating Background Colors for clear separation */
+        .system-section:nth-child(even) {
+            background-color: var(--bg-alt);
+        }
+
+        .system-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .system-number {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--trx-gold);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .system-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--trx-dark);
+            margin-bottom: 15px;
+        }
+
+        /* Wide Image Container */
+        .system-image-wrapper {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            border: 1px solid #e0e0e0;
+        }
+
+        /* Browser Mockup Top Bar */
+        .browser-bar {
+            background: #f1f1f1;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .browser-dots {
+            display: flex;
+            gap: 6px;
+        }
+        .browser-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        .dot-red { background-color: #ff5f56; }
+        .dot-yellow { background-color: #ffbd2e; }
+        .dot-green { background-color: #27c93f; }
+
+        .system-image-wrapper img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Explanation Text Area */
+        .system-desc {
+            max-width: 800px;
+            margin: 40px auto 0;
+            text-align: center;
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header class="py-3 px-4 d-flex justify-content-between align-items-center border-bottom bg-white">
+        <div class="fw-bold fs-4 tracking-wider">IMS<span class="text-gold">.552</span></div>
+        <div class="text-muted small fw-semibold tracking-wide d-none d-sm-block">IMS552 Web-Slide Concept Presentation</div>
+    </header>
+
+    <!-- Navigation Menu -->
+    <div class="custom-nav-wrapper">
+        <ul class="custom-nav">
+            <li><a href="index.html" class="nav-link">Introduction</a></li>
+            <li><a href="org-background.html" class="nav-link">Organization Background</a></li>
+            <li><a href="corporate-identity.html" class="nav-link">Vision & Mission</a></li>
+            <li><a href="structure-chart.html" class="nav-link">Structure Chart</a></li>
+            <li><a href="functional-desc.html" class="nav-link">Functional Description</a></li>
+            <li><a href="roles-functions.html" class="nav-link">Roles & Functions</a></li>
+            <li><a href="data-used.html" class="nav-link">Data Used</a></li>
+            <li><a href="is-list.html" class="nav-link active">List of IS</a></li>
+            <li><a href="is-types.html" class="nav-link">Types of IS</a></li>
+            <li><a href="is-details.html" class="nav-link">Details of Selected IS</a></li>
+            <li><a href="is-problems.html" class="nav-link">IS Problems</a></li>
+            <li><a href="swot-analysis.html" class="nav-link">SWOT Analysis</a></li>
+            <li><a href="recommendations.html" class="nav-link">Recommendations</a></li>
+            <li><a href="conclusion.html" class="nav-link">Conclusion</a></li>
+        </ul>
+    </div>
+
+    <!-- Page Introduction -->
+    <div class="container mt-5 pt-4 mb-4 text-center">
+        <h6 class="text-gold fw-bold text-uppercase tracking-wide">Technology Stack</h6>
+        <h1 class="fw-bold display-6">List of Information Systems</h1>
+        <p class="text-muted mt-3" style="max-width: 700px; margin: 0 auto;">An overview of the core software infrastructures and digital applications identified during our interview session at TRX City Sdn Bhd.</p>
+    </div>
+
+    <!-- System 1: IT Asset Management System -->
+    <section class="system-section">
+        <div class="container">
+            <div class="system-header">
+                <span class="system-number">System 01</span>
+                <h2 class="system-title">IT Asset Management System</h2>
+            </div>
+            
+            <div class="system-image-wrapper">
+                <div class="browser-bar">
+                    <div class="browser-dots">
+                        <div class="browser-dot dot-red"></div>
+                        <div class="browser-dot dot-yellow"></div>
+                        <div class="browser-dot dot-green"></div>
+                    </div>
+                </div>
+                <!-- Replace src with your actual screenshot -->
+                <img src="SYSTEM1.png" alt="IT Asset Management System Interface">
+            </div>
+
+            <div class="system-desc">
+                <p><strong>Brief Explanation:</strong> [Insert your template text here. Briefly describe what this system does, who uses it, and its main objective within the organization. Keep it concise to ensure the presentation flows smoothly.]</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- System 2: IFCA Application -->
+    <section class="system-section">
+        <div class="container">
+            <div class="system-header">
+                <span class="system-number">System 02</span>
+                <h2 class="system-title">IFCA Application</h2>
+            </div>
+            
+            <div class="system-image-wrapper">
+                <div class="browser-bar">
+                    <div class="browser-dots">
+                        <div class="browser-dot dot-red"></div>
+                        <div class="browser-dot dot-yellow"></div>
+                        <div class="browser-dot dot-green"></div>
+                    </div>
+                </div>
+                <!-- Replace src with your actual screenshot -->
+                <img src="SYSTEM2.png" alt="IFCA Application Interface">
+            </div>
+
+            <div class="system-desc">
+                <p><strong>Brief Explanation:</strong> [Insert your template text here. Provide a short summary of how the IFCA Application manages financial or property data, its primary function, and its overall goal.]</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- System 3: Facilities Management System (FMS) -->
+    <section class="system-section">
+        <div class="container">
+            <div class="system-header">
+                <span class="system-number">System 03</span>
+                <h2 class="system-title">Facilities Management System (FMS)</h2>
+            </div>
+            
+            <div class="system-image-wrapper">
+                <div class="browser-bar">
+                    <div class="browser-dots">
+                        <div class="browser-dot dot-red"></div>
+                        <div class="browser-dot dot-yellow"></div>
+                        <div class="browser-dot dot-green"></div>
+                    </div>
+                </div>
+                <!-- Replace src with your actual screenshot -->
+                <img src="SYSTEM3.png" alt="Facilities Management System Interface">
+            </div>
+
+            <div class="system-desc">
+                <p><strong>Brief Explanation:</strong> [Insert your template text here. Explain the purpose of FMS in tracking maintenance, coordinating facility tasks, and the specific objectives it achieves for TRX City.]</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- System 4: Employee Self-System (ESS) -->
+    <section class="system-section" style="border-bottom: none;">
+        <div class="container">
+            <div class="system-header">
+                <span class="system-number">System 04</span>
+                <h2 class="system-title">Employee Self-System (ESS)</h2>
+            </div>
+            
+            <div class="system-image-wrapper">
+                <div class="browser-bar">
+                    <div class="browser-dots">
+                        <div class="browser-dot dot-red"></div>
+                        <div class="browser-dot dot-yellow"></div>
+                        <div class="browser-dot dot-green"></div>
+                    </div>
+                </div>
+                <!-- Replace src with your actual screenshot -->
+                <img src="SYSTEM4.png" alt="Employee Self-System Interface">
+            </div>
+
+            <div class="system-desc">
+                <p><strong>Brief Explanation:</strong> [Insert your template text here. Describe how the ESS streamlines HR processes, allows employee autonomy for claims/leave, and its organizational benefit.]</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bootstrap 5 Bundle JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

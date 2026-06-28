@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Details of Selected IS | TRX City</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --trx-gold: #C09A53;
+            --trx-dark: #1A1A1A;
+            --trx-light: #F9F9F9;
+            --text-muted: #666666;
+            --bg-alt: #f1f3f5;
+        }
+
+        body { font-family: 'Montserrat', sans-serif; background-color: var(--trx-light); color: var(--trx-dark); }
+
+        /* Navigation Bar */
+        .custom-nav-wrapper { background-color: #ffffff; border-bottom: 1px solid #e0e0e0; overflow-x: auto; white-space: nowrap; position: sticky; top: 0; z-index: 1030; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        .custom-nav-wrapper::-webkit-scrollbar { height: 4px; }
+        .custom-nav-wrapper::-webkit-scrollbar-thumb { background-color: var(--trx-gold); border-radius: 4px; }
+        .custom-nav { display: flex; padding: 15px 20px; list-style: none; margin: 0; }
+        .custom-nav .nav-link { color: var(--text-muted); font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; padding: 8px 16px; border-bottom: 2px solid transparent; transition: all 0.3s ease; text-decoration: none; }
+        .custom-nav .nav-link:hover { color: var(--trx-dark); }
+        .custom-nav .nav-link.active { color: var(--trx-gold); border-bottom: 2px solid var(--trx-gold); }
+
+        .text-gold { color: var(--trx-gold); }
+        .section-title { font-weight: 700; color: var(--trx-dark); margin-bottom: 30px; position: relative; padding-bottom: 15px; }
+        .section-title::after { content: ''; position: absolute; left: 0; bottom: 0; width: 50px; height: 3px; background-color: var(--trx-gold); }
+        
+        /* 1. Overview Section */
+        .overview-box { background: #fff; padding: 40px; border-radius: 8px; box-shadow: 0 5px 20px rgba(0,0,0,0.03); border-top: 4px solid var(--trx-gold); }
+        
+        /* 2. Vertical Tabs (Functions) */
+        .func-tabs { border-right: 1px solid #dee2e6; }
+        .func-tabs .nav-link { color: var(--text-muted); font-weight: 600; text-align: left; padding: 15px 20px; border-radius: 0; border-bottom: 1px solid #eee; transition: all 0.2s; }
+        .func-tabs .nav-link:hover { background-color: rgba(192, 154, 83, 0.05); color: var(--trx-gold); }
+        .func-tabs .nav-link.active { background-color: var(--trx-dark); color: var(--trx-gold); border-right: 4px solid var(--trx-gold); }
+        .tab-content-box { background: #fff; padding: 40px; border-radius: 8px; box-shadow: 0 5px 20px rgba(0,0,0,0.03); min-height: 480px; }
+
+        /* =========================================
+           CREATIVE ANIMATED UI CONTAINERS 
+           ========================================= */
+        
+        .animated-container { background: #111; padding: 30px; border-radius: 8px; position: relative; overflow: hidden; border: 2px solid #333; margin-top: 20px; min-height: 160px; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+
+        /* Tab 1: Asset Registration */
+        .mock-form-line { width: 80%; height: 12px; background: #222; margin-bottom: 15px; border-radius: 6px; position: relative; overflow: hidden; }
+        .mock-form-line::after { content: ''; position: absolute; top:0; left:-100%; width:100%; height:100%; background: var(--trx-gold); animation: fillForm 2.5s infinite ease-out; }
+        .mock-form-line:nth-child(2)::after { animation-delay: 0.2s; }
+        .mock-form-line:nth-child(3)::after { background: #0ea5e9; animation-delay: 0.4s; }
+        @keyframes fillForm { 0% { left: -100%; } 40%, 100% { left: 0; } }
+        .registered-stamp { position: absolute; right: 20px; top: 20px; color: #27c93f; border: 3px solid #27c93f; padding: 5px 15px; font-weight: 800; font-size: 14px; letter-spacing: 2px; transform: rotate(-15deg); opacity: 0; animation: stamp 2.5s infinite; }
+        @keyframes stamp { 0%, 50% { opacity: 0; transform: scale(2) rotate(-15deg); } 60%, 100% { opacity: 1; transform: scale(1) rotate(-15deg); } }
+
+        /* Tab 2: Barcode Scanner (ORIGINAL) */
+        .barcode-graphic { font-size: 60px; letter-spacing: -5px; color: #fff; opacity: 0.8; font-family: monospace; line-height: 1;}
+        .laser-line { position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: #ff0000; box-shadow: 0 0 15px 5px rgba(255,0,0,0.5); animation: scan 2.5s infinite linear; }
+        @keyframes scan { 0% { top: 10%; opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { top: 90%; opacity: 0; } }
+        .restricted-badge { position: absolute; top: 15px; right: 15px; background: #dc3545; color: white; font-size: 10px; font-weight: 800; padding: 5px 10px; letter-spacing: 1px; animation: blink 2s infinite; z-index: 10;}
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+        /* Tab 3: Tracking Radar */
+        .radar-sweep { width: 100px; height: 100px; border-radius: 50%; border: 1px solid #444; position: relative; overflow: hidden; background: radial-gradient(circle, #222 0%, #111 100%); }
+        .radar-sweep::before { content: ''; position: absolute; top: 50%; left: 50%; width: 50%; height: 50%; background: linear-gradient(45deg, rgba(39, 201, 63, 0) 0%, rgba(39, 201, 63, 0.6) 100%); transform-origin: 0% 0%; animation: radar 2s linear infinite; }
+        .radar-dot { width: 6px; height: 6px; background: #27c93f; border-radius: 50%; position: absolute; top: 35%; left: 65%; box-shadow: 0 0 10px #27c93f; animation: pulseDot 2s infinite; }
+        @keyframes radar { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        @keyframes pulseDot { 0%, 70% { opacity: 0.2; } 80%, 100% { opacity: 1; } }
+
+        /* Tab 4: Check In/Out */
+        .transfer-area { width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; position: relative; }
+        .node-box { background: #222; border: 1px dashed #555; padding: 10px 20px; color: #fff; font-size: 11px; font-weight: 700; border-radius: 4px; letter-spacing: 1px; }
+        .moving-asset { position: absolute; font-size: 24px; color: var(--trx-gold); animation: moveAsset 4s infinite ease-in-out; }
+        @keyframes moveAsset { 0%, 10% { left: 40px; transform: scale(1); color: var(--trx-gold); } 40%, 60% { left: calc(100% - 70px); transform: scale(1.1); color: #0ea5e9; } 90%, 100% { left: 40px; transform: scale(1); color: var(--trx-gold); } }
+
+        /* Tab 5: Warranty */
+        .shield-icon { font-size: 40px; color: #fff; margin-bottom: 20px; animation: shieldColor 6s infinite; }
+        .progress-bg { width: 80%; height: 8px; background: #333; border-radius: 4px; position: relative; overflow: hidden; }
+        .progress-fill { position: absolute; top:0; left:0; height:100%; width: 100%; animation: drainBar 6s infinite ease-out; }
+        @keyframes drainBar { 0%, 20% { width: 100%; background: #27c93f; } 50% { width: 50%; background: #ffbd2e; } 80%, 100% { width: 10%; background: #ff5f56; } }
+        @keyframes shieldColor { 0%, 20% { color: #27c93f; } 50% { color: #ffbd2e; } 80%, 100% { color: #ff5f56; } }
+
+        /* Tab 6: Reports */
+        .chart-container { display: flex; align-items: flex-end; justify-content: center; gap: 12px; height: 80px; width: 100%; }
+        .bar-chart { width: 25px; background: var(--trx-gold); border-radius: 3px 3px 0 0; animation: growBar 2s infinite alternate ease-in-out; transform-origin: bottom; }
+        .bar-1 { height: 40%; animation-delay: 0s; } .bar-2 { height: 70%; animation-delay: 0.2s; } .bar-3 { height: 100%; background: #0ea5e9; animation-delay: 0.4s; } .bar-4 { height: 60%; animation-delay: 0.6s; }
+        @keyframes growBar { from { transform: scaleY(0.4); } to { transform: scaleY(1); } }
+
+        /* Tab 7: Recovery */
+        .sync-icon { font-size: 40px; color: #0ea5e9; animation: spinSync 2s infinite linear; margin-bottom: 15px;}
+        .recovery-text { font-family: monospace; color: #27c93f; font-size: 14px; letter-spacing: 2px; opacity: 0; animation: flashText 3s infinite; }
+        @keyframes spinSync { 100% { transform: rotate(360deg); } }
+        @keyframes flashText { 0%, 40% { opacity: 0; } 50%, 100% { opacity: 1; } }
+
+        /* ========================================= */
+
+        /* 3. Components Grid */
+        .component-card { background: #fff; padding: 30px 20px; text-align: center; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); transition: transform 0.3s; height: 100%; border-bottom: 3px solid transparent; }
+        .component-card:hover { transform: translateY(-5px); border-bottom-color: var(--trx-gold); }
+        .comp-icon { font-size: 30px; color: var(--trx-gold); margin-bottom: 15px; }
+
+        /* 4. Activities Process Flow */
+        .process-flow { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-top: 30px; }
+        .process-step { background: #fff; padding: 20px; border-radius: 8px; width: calc(20% - 15px); text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.03); border-top: 3px solid var(--trx-dark); min-width: 180px; }
+        .step-num { width: 30px; height: 30px; background: var(--trx-gold); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; margin: 0 auto 15px auto; }
+        
+        /* 5. Configuration Setup */
+        .config-card { background: var(--trx-dark); color: #fff; padding: 40px; border-radius: 8px; height: 100%; }
+        .config-card h4 { color: var(--trx-gold); }
+
+        /* 6. Live Demo Section */
+        .demo-card {
+            background: var(--trx-dark);
+            color: #fff;
+            border-radius: 12px;
+            padding: 50px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+            border-left: 5px solid var(--trx-gold);
+        }
+        .demo-credentials {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 20px 25px;
+            border-radius: 8px;
+            margin-top: 25px;
+        }
+        .cred-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            font-family: monospace;
+            font-size: 16px;
+            border-bottom: 1px dashed rgba(255,255,255,0.1);
+            padding-bottom: 8px;
+        }
+        .cred-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .cred-label { color: rgba(255,255,255,0.6); text-transform: uppercase; font-size: 13px; letter-spacing: 1px; }
+        .cred-value { color: var(--trx-gold); font-weight: bold; font-size: 18px; letter-spacing: 1px; }
+        
+        .qr-container {
+            background: #fff;
+            padding: 15px;
+            border-radius: 12px;
+            display: inline-block;
+            position: relative;
+        }
+        .qr-placeholder {
+            width: 200px;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        /* Scanning Bracket Accents */
+        .qr-bracket { position: absolute; width: 30px; height: 30px; border-color: var(--trx-gold); border-style: solid; z-index: 5; }
+        .qr-tl { top: -10px; left: -10px; border-width: 4px 0 0 4px; }
+        .qr-tr { top: -10px; right: -10px; border-width: 4px 4px 0 0; }
+        .qr-bl { bottom: -10px; left: -10px; border-width: 0 0 4px 4px; }
+        .qr-br { bottom: -10px; right: -10px; border-width: 0 4px 4px 0; }
+
+        .pulse-text { animation: pulseOpacity 2s infinite; }
+        @keyframes pulseOpacity { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+    </style>
+</head>
+<body>
+
+    <header class="py-3 px-4 d-flex justify-content-between align-items-center border-bottom bg-white">
+        <div class="fw-bold fs-4 tracking-wider">IMS<span class="text-gold">.552</span></div>
+        <div class="text-muted small fw-semibold tracking-wide d-none d-sm-block">IMS552 Web-Slide Concept Presentation</div>
+    </header>
+
+    <div class="custom-nav-wrapper">
+        <ul class="custom-nav">
+            <li><a href="index.html" class="nav-link">Introduction</a></li>
+            <li><a href="org-background.html" class="nav-link">Organization Background</a></li>
+            <li><a href="corporate-identity.html" class="nav-link">Vision & Mission</a></li>
+            <li><a href="structure-chart.html" class="nav-link">Structure Chart</a></li>
+            <li><a href="functional-desc.html" class="nav-link">Functional Description</a></li>
+            <li><a href="roles-functions.html" class="nav-link">Roles & Functions</a></li>
+            <li><a href="data-used.html" class="nav-link">Data Used</a></li>
+            <li><a href="is-list.html" class="nav-link">List of IS</a></li>
+            <li><a href="is-types.html" class="nav-link">Types of IS</a></li>
+            <li><a href="is-details.html" class="nav-link active">Details of Selected IS</a></li>
+            <li><a href="is-problems.html" class="nav-link">IS Problems</a></li>
+            <li><a href="swot-analysis.html" class="nav-link">SWOT Analysis</a></li>
+            <li><a href="recommendations.html" class="nav-link">Recommendations</a></li>
+            <li><a href="conclusion.html" class="nav-link">Conclusion</a></li>
+        </ul>
+    </div>
+
+    <main class="container my-5 py-3">
+        
+        <div class="text-center mb-5">
+            <h6 class="text-gold fw-bold text-uppercase tracking-wide">Deep Dive Analysis</h6>
+            <h1 class="fw-bold display-6">Details of Selected Information System</h1>
+            <p class="text-muted">An in-depth evaluation of the IT Asset Management System architecture.</p>
+        </div>
+
+        <section class="mb-5">
+            <h3 class="section-title">System Overview & Background</h3>
+            <div class="row g-4">
+                <div class="col-lg-6">
+                    <div class="overview-box h-100">
+                        <p class="text-muted">For this section, the selected information system to be analysed is the <strong>IT Asset Management System</strong>. This system is used by the IT Department to collect, manage, monitor, and update information related to physical IT assets owned or used by TRX City Sdn. Bhd.</p>
+                        <p class="text-muted">These assets include laptops, personal computers, servers, network equipment, and data centre resources. The system plays an important role in ensuring that IT assets are properly recorded, traceable, and maintained throughout their lifecycle.</p>
+                        <div class="mt-4 p-3 bg-light border-start border-4 border-warning">
+                            <strong>System Classification:</strong> In terms of information system classification, the IT Asset Management System can be categorised as an Operational Support System.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="shadow-sm rounded overflow-hidden h-100 border">
+                        <img src="SYSTEM1.png" class="img-fluid w-100 h-100 object-fit-cover" alt="System Dashboard" onerror="this.src='https://placehold.co/800x450/e9ecef/a3a3a3?text=Figure+1:+TRX+IT+Asset+Management+System'">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="my-5 opacity-25">
+
+        <section class="mb-5">
+            <h3 class="section-title">Functional Description</h3>
+            <p class="text-muted mb-4">The main functions of the system are asset registration, barcode scanning, asset tracking, check-in/check-out control, warranty monitoring, reporting, and data recovery.</p>
+            
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="nav flex-column nav-pills func-tabs" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#tab-1" type="button">1. Asset Registration</button>
+                        <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-2" type="button">2. Barcode Scanning <i class="fa-solid fa-lock ms-2 text-danger"></i></button>
+                        <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-3" type="button">3. Tracking & Monitoring</button>
+                        <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-4" type="button">4. Check-In / Check-Out</button>
+                        <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-5" type="button">5. Warranty Tracking</button>
+                        <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-6" type="button">6. Report Generation</button>
+                        <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-7" type="button">7. Data Recovery</button>
+                    </div>
+                </div>
+                
+                <div class="col-md-8">
+                    <div class="tab-content tab-content-box" id="v-pills-tabContent">
+                        
+                        <div class="tab-pane fade show active" id="tab-1" role="tabpanel">
+                            <h4 class="fw-bold mb-3"><i class="fa-solid fa-laptop-medical text-gold me-2"></i> Asset Registration</h4>
+                            <p class="text-muted">The system allows the IT Department to register IT assets into the asset inventory. When a new asset is received, important information can be recorded, such as asset type, barcode number, location, department, user assignment, warranty status, and other relevant details.</p>
+                            
+                            <div class="animated-container">
+                                <div class="mock-form-line"></div>
+                                <div class="mock-form-line"></div>
+                                <div class="mock-form-line" style="width: 50%;"></div>
+                                <div class="registered-stamp">REGISTERED</div>
+                                <p class="text-white-50 mt-4 mb-0 small text-uppercase tracking-widest">Entering Data into Inventory...</p>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="tab-2" role="tabpanel">
+                            <h4 class="fw-bold mb-3"><i class="fa-solid fa-barcode text-gold me-2"></i> Barcode Scanning & Identification</h4>
+                            <p class="text-muted">Each asset has its own barcode, which makes it easier for IT staff to identify and trace the asset. Instead of manually searching for asset details, staff can scan the barcode to retrieve the asset record from the system.</p>
+                            
+                            <div class="animated-container" style="text-align: center;">
+                                <div class="restricted-badge"><i class="fa-solid fa-triangle-exclamation"></i> IT DEPT ONLY</div>
+                                <div class="barcode-graphic">||| |||| | ||| || | ||</div>
+                                <div class="laser-line"></div>
+                                <p class="text-white-50 mt-3 mb-0 small text-uppercase tracking-widest">Scanning TRX Asset Tag...</p>
+                            </div>
+                            <p class="text-muted mt-3 small text-center fw-bold text-danger">Note: Scanning and viewing detailed asset architecture via barcodes is strictly restricted to authorized IT personnel only.</p>
+                        </div>
+
+                        <div class="tab-pane fade" id="tab-3" role="tabpanel">
+                            <h4 class="fw-bold mb-3"><i class="fa-solid fa-location-crosshairs text-gold me-2"></i> Asset Tracking & Monitoring</h4>
+                            <p class="text-muted">The system helps the IT Department track the current status and movement of IT assets. It allows staff to identify whether an asset is currently assigned to a user, available, returned, under maintenance, or due for replacement.</p>
+                            
+                            <div class="animated-container">
+                                <div class="radar-sweep">
+                                    <div class="radar-dot"></div>
+                                </div>
+                                <p class="text-white-50 mt-3 mb-0 small text-uppercase tracking-widest">Locating Assigned Asset...</p>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="tab-4" role="tabpanel">
+                            <h4 class="fw-bold mb-3"><i class="fa-solid fa-right-left text-gold me-2"></i> Check-In and Check-Out Control</h4>
+                            <p class="text-muted">When an asset is issued to an employee, the system records the assignment details. When the asset is returned, the system can be updated to reflect the latest status. This helps prevent assets from being misplaced.</p>
+                            
+                            <div class="animated-container">
+                                <div class="transfer-area">
+                                    <div class="node-box">IT STORAGE</div>
+                                    <i class="fa-solid fa-laptop moving-asset"></i>
+                                    <div class="node-box border-info">EMPLOYEE</div>
+                                </div>
+                                <p class="text-white-50 mt-4 mb-0 small text-uppercase tracking-widest">Processing Transfer Log...</p>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="tab-5" role="tabpanel">
+                            <h4 class="fw-bold mb-3"><i class="fa-solid fa-shield-halved text-gold me-2"></i> Warranty Tracking</h4>
+                            <p class="text-muted">Warranty tracking allows the department to identify assets that are still covered by warranty and assets that may require replacement or maintenance planning. This reduces unnecessary repair costs.</p>
+                            
+                            <div class="animated-container">
+                                <i class="fa-solid fa-shield-check shield-icon"></i>
+                                <div class="progress-bg">
+                                    <div class="progress-fill"></div>
+                                </div>
+                                <p class="text-white-50 mt-3 mb-0 small text-uppercase tracking-widest">Monitoring Lifecycle Status...</p>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="tab-6" role="tabpanel">
+                            <h4 class="fw-bold mb-3"><i class="fa-solid fa-file-pdf text-gold me-2"></i> Report Generation</h4>
+                            <p class="text-muted">These reports may include asset inventory lists, audit reports, asset movement records, warranty updates, and asset status reports. Management can use the reports to understand the condition of IT resources.</p>
+                            
+                            <div class="animated-container">
+                                <div class="chart-container">
+                                    <div class="bar-chart bar-1"></div>
+                                    <div class="bar-chart bar-2"></div>
+                                    <div class="bar-chart bar-3"></div>
+                                    <div class="bar-chart bar-4"></div>
+                                </div>
+                                <p class="text-white-50 mt-3 mb-0 small text-uppercase tracking-widest">Compiling System Metrics...</p>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="tab-7" role="tabpanel">
+                            <h4 class="fw-bold mb-3"><i class="fa-solid fa-cloud-arrow-down text-gold me-2"></i> Data Recovery & Correction</h4>
+                            <p class="text-muted">If an error occurs, such as incorrect data entry or system failure, the organisation can restore or correct the affected records. Without proper recovery support, the organisation may face difficulties in retrieving accurate asset information.</p>
+                            
+                            <div class="animated-container">
+                                <i class="fa-solid fa-arrows-rotate sync-icon"></i>
+                                <div class="recovery-text">>>> BACKUP SYNC COMPLETE</div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="my-5 opacity-25">
+
+        <section class="mb-5">
+            <h3 class="section-title text-center mx-auto" style="max-width: fit-content;">System Components</h3>
+            <p class="text-center text-muted mb-4">These components include people, hardware, software, data, procedures, and network resources.</p>
+            
+            <div class="row row-cols-2 row-cols-md-3 g-4">
+                <div class="col">
+                    <div class="component-card">
+                        <i class="fa-solid fa-users comp-icon"></i>
+                        <h6 class="fw-bold">People</h6>
+                        <p class="text-muted small mb-0">IT Department staff who register assets, update information, and generate reports.</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="component-card">
+                        <i class="fa-solid fa-server comp-icon"></i>
+                        <h6 class="fw-bold">Hardware</h6>
+                        <p class="text-muted small mb-0">Laptops, PCs, servers, network equipment, and data centre resources.</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="component-card">
+                        <i class="fa-solid fa-window-maximize comp-icon"></i>
+                        <h6 class="fw-bold">Software</h6>
+                        <p class="text-muted small mb-0">The central asset management platform, databases, and reporting tools.</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="component-card">
+                        <i class="fa-solid fa-database comp-icon"></i>
+                        <h6 class="fw-bold">Data</h6>
+                        <p class="text-muted small mb-0">Asset types, barcode numbers, locations, user assignments, and statuses.</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="component-card">
+                        <i class="fa-solid fa-clipboard-list comp-icon"></i>
+                        <h6 class="fw-bold">Procedures</h6>
+                        <p class="text-muted small mb-0">The steps and rules followed by the IT Department when managing assets.</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="component-card">
+                        <i class="fa-solid fa-network-wired comp-icon"></i>
+                        <h6 class="fw-bold">Network</h6>
+                        <p class="text-muted small mb-0">IT infrastructure allowing asset data to be stored, accessed, and backed up.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="my-5 opacity-25">
+
+        <section class="mb-5">
+            <h3 class="section-title">System Activities Lifecycle</h3>
+            <p class="text-muted">These activities show how the system collects data, processes it, produces useful information, stores records, and protects the accuracy of asset information.</p>
+            
+            <div class="process-flow">
+                <div class="process-step">
+                    <div class="step-num">1</div>
+                    <h6 class="fw-bold">Input</h6>
+                    <p class="text-muted small mb-0">Data entered such as barcode, assignment, and location.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-num">2</div>
+                    <h6 class="fw-bold">Processing</h6>
+                    <p class="text-muted small mb-0">System records, updates, scans, and audits in the database.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-num">3</div>
+                    <h6 class="fw-bold">Output</h6>
+                    <p class="text-muted small mb-0">Produces audit reports, lists, and warranty updates.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-num">4</div>
+                    <h6 class="fw-bold">Storage</h6>
+                    <p class="text-muted small mb-0">Saving asset data in the centralised database.</p>
+                </div>
+                <div class="process-step" style="border-top-color: var(--trx-gold);">
+                    <div class="step-num bg-dark">5</div>
+                    <h6 class="fw-bold">Control</h6>
+                    <p class="text-muted small mb-0">Access control, verification, firewall, and backups.</p>
+                </div>
+            </div>
+        </section>
+
+        <hr class="my-5 opacity-25">
+
+        <section class="mb-5">
+            <h3 class="section-title">Hardware & Software Configuration</h3>
+            
+            <div class="row g-4 mt-2">
+                <div class="col-lg-6">
+                    <div class="card h-100 border-0 shadow-sm p-4 border-top border-4 border-dark">
+                        <h5 class="fw-bold mb-3"><i class="fa-solid fa-server text-muted me-2"></i> Infrastructure Configuration</h5>
+                        <p class="text-muted small">Based on the interview findings, the system is supported by IT infrastructure such as servers, network equipment, and data centre resources. Barcode identification helps the IT Department perform asset audits more efficiently.</p>
+                        <p class="text-muted small mb-0">In terms of software configuration, the system uses an asset management platform to maintain the centralised inventory. The system also depends on database and backup functions.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="config-card">
+                        <h5 class="fw-bold mb-3"><i class="fa-solid fa-shield-cat text-gold me-2"></i> Security Architecture</h5>
+                        <p class="text-white-50 small">TRX City Sdn. Bhd. uses security measures such as firewall protection to detect penetration attempts.</p>
+                        <ul class="text-white-50 small">
+                            <li>Access for external guests is managed through integrated WiFi arrangements.</li>
+                            <li>Email passwords are changed every 90 days to strengthen account security.</li>
+                            <li>System updates are checked regularly to maintain system stability and reduce technical problems.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="my-5 opacity-25">
+
+        <section class="mb-5 pb-4">
+            <h3 class="section-title text-center mx-auto" style="max-width: fit-content;">Live System Demonstration</h3>
+            
+            <div class="demo-card mt-4">
+                <div class="row align-items-center g-5">
+                    
+                    <div class="col-lg-7">
+                        <h2 class="fw-bold text-gold mb-3"><i class="fa-solid fa-laptop-code me-2"></i> IT Asset Management Demo System</h2>
+                        <p class="text-white-50 fs-5 mb-4">Experience the system interface firsthand. We have secured a temporary testing environment to demonstrate the core features of the Asset Management platform.</p>
+                        <p class="text-white-50 small mb-0"><i class="fa-solid fa-circle-info text-info me-2"></i> Scan the QR code using your mobile device camera, then log in using the credentials provided below to explore the dashboard.</p>
+                        
+                        <div class="demo-credentials shadow-lg">
+                            <div class="cred-item">
+                                <span class="cred-label">Demo URL</span>
+                                <span class="cred-value" style="text-transform: lowercase;">https://demo.snipeitapp.com/login</span>
+                            </div>
+                            <div class="cred-item">
+                                <span class="cred-label">Username</span>
+                                <span class="cred-value">admin</span>
+                            </div>
+                            <div class="cred-item">
+                                <span class="cred-label">Password</span>
+                                <span class="cred-value">password</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-5 text-center">
+                        <div class="qr-container">
+                            <div class="qr-placeholder">
+                                <div class="qr-bracket qr-tl"></div>
+                                <div class="qr-bracket qr-tr"></div>
+                                <div class="qr-bracket qr-bl"></div>
+                                <div class="qr-bracket qr-br"></div>
+                                
+                                <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://demo.snipeitapp.com/login" alt="Demo QR Code" class="img-fluid" style="border-radius: 4px;">
+                            </div>
+                        </div>
+                        <h6 class="text-gold fw-bold mt-4 mb-0 pulse-text">SCAN TO ACCESS DEMO</h6>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

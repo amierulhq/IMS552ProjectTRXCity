@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organization Background | TRX City</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --trx-gold: #C09A53;
+            --trx-dark: #1A1A1A;
+            --trx-light: #F9F9F9;
+            --text-muted: #666666;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--trx-light);
+            color: var(--trx-dark);
+        }
+
+        /* Header Branding */
+        header {
+            background-color: #ffffff;
+        }
+
+        /* Mobile-Friendly Scrollable Menu bar */
+        .custom-nav-wrapper {
+            background-color: #ffffff;
+            border-bottom: 1px solid #e0e0e0;
+            overflow-x: auto;
+            white-space: nowrap;
+            position: sticky;
+            top: 0;
+            z-index: 1030;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .custom-nav-wrapper::-webkit-scrollbar {
+            height: 4px;
+        }
+        .custom-nav-wrapper::-webkit-scrollbar-thumb {
+            background-color: var(--trx-gold);
+            border-radius: 4px;
+        }
+        .custom-nav {
+            display: flex;
+            padding: 15px 20px;
+            list-style: none;
+            margin: 0;
+        }
+        .custom-nav .nav-link {
+            color: var(--text-muted);
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 8px 16px;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        .custom-nav .nav-link:hover {
+            color: var(--trx-dark);
+        }
+        .custom-nav .nav-link.active {
+            color: var(--trx-gold);
+            border-bottom: 2px solid var(--trx-gold);
+        }
+
+        /* Utilities */
+        .text-gold { color: var(--trx-gold); }
+        .bg-dark-custom { background-color: var(--trx-dark); }
+
+        /* Hero Banner Section */
+        .hero-banner {
+            position: relative;
+            background: linear-gradient(rgba(26, 26, 26, 0.7), rgba(26, 26, 26, 0.8)), 
+                        url('IMG2.jpg') center/cover no-repeat;
+            padding: 120px 0;
+            color: #ffffff;
+        }
+
+        .hero-logo-box {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 15px 30px;
+            border-radius: 4px;
+            margin-bottom: 30px;
+        }
+
+        /* Quick Facts Cards */
+        .fact-card {
+            background: #ffffff;
+            border: none;
+            border-radius: 8px;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+            transition: transform 0.3s ease;
+            height: 100%;
+        }
+        .fact-card:hover {
+            transform: translateY(-5px);
+        }
+        .fact-icon {
+            font-size: 32px;
+            color: var(--trx-gold);
+            margin-bottom: 15px;
+        }
+
+        /* Premium Vertical Timeline */
+        .timeline-wrapper {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 0;
+        }
+        .timeline-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50px;
+            height: 100%;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--trx-gold), rgba(192, 154, 83, 0.1));
+        }
+        @media (max-width: 768px) {
+            .timeline-wrapper::before { left: 30px; }
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 120px;
+            margin-bottom: 60px;
+        }
+        @media (max-width: 768px) {
+            .timeline-item { padding-left: 80px; }
+        }
+
+        .timeline-marker {
+            position: absolute;
+            left: 31px;
+            top: 0;
+            width: 40px;
+            height: 40px;
+            background-color: var(--trx-dark);
+            border: 3px solid var(--trx-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--trx-gold);
+            font-size: 16px;
+            z-index: 2;
+            box-shadow: 0 0 0 5px var(--trx-light);
+        }
+        @media (max-width: 768px) {
+            .timeline-marker { left: 11px; }
+        }
+
+        .timeline-content {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            border-left: 4px solid var(--trx-gold);
+            position: relative;
+        }
+        
+        .timeline-year {
+            position: absolute;
+            top: -20px;
+            left: 30px;
+            background: var(--trx-gold);
+            color: #fff;
+            padding: 5px 15px;
+            font-weight: 700;
+            font-size: 14px;
+            border-radius: 4px;
+            letter-spacing: 1px;
+        }
+
+        .timeline-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="py-3 px-4 d-flex justify-content-between align-items-center border-bottom">
+        <div class="fw-bold fs-4 tracking-wider">IMS<span class="text-gold">.552</span></div>
+        <div class="text-muted small fw-semibold tracking-wide d-none d-sm-block">IMS552 Web-Slide Concept Presentation</div>
+    </header>
+
+    <div class="custom-nav-wrapper">
+        <ul class="custom-nav">
+            <li><a href="index.html" class="nav-link">Introduction</a></li>
+            <li><a href="org-background.html" class="nav-link active">Organization Background</a></li>
+            <li><a href="corporate-identity.html" class="nav-link">Vision & Mission</a></li>
+            <li><a href="structure-chart.html" class="nav-link">Structure Chart</a></li>
+            <li><a href="functional-desc.html" class="nav-link">Functional Description</a></li>
+            <li><a href="roles-functions.html" class="nav-link">Roles & Functions</a></li>
+            <li><a href="data-used.html" class="nav-link">Data Used</a></li>
+            <li><a href="is-list.html" class="nav-link">List of IS</a></li>
+            <li><a href="is-types.html" class="nav-link">Types of IS</a></li>
+            <li><a href="is-details.html" class="nav-link">Details of Selected IS</a></li>
+            <li><a href="is-problems.html" class="nav-link">IS Problems</a></li>
+            <li><a href="swot-analysis.html" class="nav-link">SWOT Analysis</a></li>
+            <li><a href="recommendations.html" class="nav-link">Recommendations</a></li>
+            <li><a href="conclusion.html" class="nav-link">Conclusion</a></li>
+        </ul>
+    </div>
+
+    <section class="hero-banner text-center">
+        <div class="container">
+            <div class="hero-logo-box">
+                <h2 class="fw-bold mb-0" style="letter-spacing: 3px;">TRX <span class="text-gold">CITY</span> SDN. BHD.</h2>
+            </div>
+            <h1 class="display-4 fw-bold mb-4">Building Malaysia’s International Financial District</h1>
+            <p class="lead mx-auto text-white-50" style="max-width: 800px; font-size: 16px;">
+                TRX City Sdn Bhd is the master developer responsible for Tun Razak Exchange (TRX), Malaysia’s first international financial district designed to drive economic growth, innovation, and sustainable urban development.
+            </p>
+        </div>
+    </section>
+
+    <section class="container" style="margin-top: -50px; position: relative; z-index: 10;">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+            
+            <div class="col">
+                <div class="fact-card">
+                    <i class="fa-solid fa-calendar-check fact-icon"></i>
+                    <h6 class="text-muted text-uppercase small fw-bold tracking-wide mb-2">Founded</h6>
+                    <h4 class="fw-bold mb-0">2011</h4>
+                </div>
+            </div>
+            
+            <div class="col">
+                <div class="fact-card">
+                    <i class="fa-solid fa-landmark fact-icon"></i>
+                    <h6 class="text-muted text-uppercase small fw-bold tracking-wide mb-2">Parent Company</h6>
+                    <h5 class="fw-bold mb-0">Ministry of Finance</h5>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="fact-card">
+                    <i class="fa-solid fa-city fact-icon"></i>
+                    <h6 class="text-muted text-uppercase small fw-bold tracking-wide mb-2">Industry</h6>
+                    <h5 class="fw-bold mb-0">Urban Development</h5>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="fact-card">
+                    <i class="fa-solid fa-location-dot fact-icon"></i>
+                    <h6 class="text-muted text-uppercase small fw-bold tracking-wide mb-2">Location</h6>
+                    <h5 class="fw-bold mb-0">Kuala Lumpur</h5>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="container my-5 py-5">
+        <div class="text-center mb-5">
+            <h6 class="text-gold fw-bold text-uppercase tracking-wide">Corporate History</h6>
+            <h2 class="fw-bold display-6">Establishment & Milestones</h2>
+        </div>
+
+        <div class="timeline-wrapper">
+            
+            <div class="timeline-item">
+                <div class="timeline-marker"><i class="fa-solid fa-flag"></i></div>
+                <div class="timeline-content">
+                    <span class="timeline-year">2011</span>
+                    <h4 class="fw-bold mt-2">Project Initiation</h4>
+                    <p class="text-muted mb-0">TRX City Sdn Bhd was established under the Ministry of Finance to spearhead the development of a dedicated financial and business district, setting the groundwork for Kuala Lumpur's future economic hub.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-marker"><i class="fa-solid fa-person-digging"></i></div>
+                <div class="timeline-content">
+                    <span class="timeline-year">2012</span>
+                    <h4 class="fw-bold mt-2">Infrastructure Development Begins</h4>
+                    <p class="text-muted">Master planning is finalized and initial ground-breaking commences. The focus is placed heavily on integrating smart city frameworks and sustainable ESG parameters from day one.</p>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img src="IMG3.jpg" alt="Construction Phase" class="timeline-img">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-marker"><i class="fa-solid fa-building-circle-check"></i></div>
+                <div class="timeline-content">
+                    <span class="timeline-year">2017</span>
+                    <h4 class="fw-bold mt-2">First Phase Completion</h4>
+                    <p class="text-muted mb-0">Major infrastructural milestones are achieved, including the completion of foundational road networks, deep tunneling, and the topping out of initial anchor corporate towers.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-marker"><i class="fa-solid fa-rocket"></i></div>
+                <div class="timeline-content">
+                    <span class="timeline-year">2023</span>
+                    <h4 class="fw-bold mt-2">TRX Exchange Officially Launched</h4>
+                    <p class="text-muted">The district opens its doors to the public and global corporations. The Exchange TRX retail hub is launched, solidifying the 70-acre development as the new social and financial heart of Malaysia.</p>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img src="IMG4.jpg" alt="TRX Launched" class="timeline-img">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
